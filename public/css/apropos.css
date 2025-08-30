@@ -1,0 +1,276 @@
+
+.hero {
+    /* background: linear-gradient(300deg, #013f7ef4, #005078); */
+    background: rgba(0, 80, 120, 0.95);
+    color: white;
+    padding: 70px 20px;
+    text-align: center;
+    border-radius: 0 0 30px 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+  .hero h1 {
+    font-size: 2.8rem;
+    font-weight: bold;
+    animation: fadeInDown 1s;
+  }
+  .hero p {
+    animation: fadeInUp 1s;
+  }
+
+  .service-card{
+    overflow: visible;
+    /* crée de l'espace pour la moitié du badge + un peu d'air */
+    --badge-size: 70px;    
+    padding-top: calc(var(--badge-size) / 2 + 1rem);
+    background: #fff;
+    border: 2px solid rgba(145, 40, 56, 0.2);
+    transition: all 0.4s ease-in-out;
+    position: relative;
+    }
+    
+    .icon-wrapper{
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #005078, #005078);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;                           
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(145, 40, 56, 0.4);
+    transition: all 0.3s ease;
+    z-index: 2;
+    }
+
+  
+  .service-card:hover{
+      transform: translateY(-8px);
+      box-shadow: 0 8px 25px rgba(145, 40, 56, 0.25);
+      border-color: #005078;
+      transition: 0.3s ease-in;
+  }
+
+  
+  .pargrahe1, .pargrahe2, .pargrahe3 {
+      text-align: justify;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: 500;
+  }
+  
+  .atouts-container {
+      display: flex;
+      gap: 10px; /* espace entre les boutons */
+      flex-wrap: wrap; /* pour aller à la ligne si ça déborde */
+    }
+    
+    .atouts-item {
+      gap: 1;
+      display: inline-block;
+      background: rgba(0, 80, 120, 0.25);
+      padding: 3px;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 500;
+      white-space: nowrap; /* empêche le texte de couper */
+      cursor: pointer;
+    }
+  
+    /* Secion: allServices */
+  
+    .service-card {
+      position: relative;
+      border-radius: 12px;
+      background: #fff;
+      transition: all 0.3s ease-in-out;
+      border-top: 4px solid #005078;
+    }
+  
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+  
+  
+    .iconAllService {
+      background: rgba(0,80,120,0.1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+  
+    /* Animation shake */
+    .allservice-card {
+      position: relative;
+      border-radius: 12px;
+      background: #fff;
+      transition: all 0.3s ease-in-out;
+      border-top: 4px solid #005078;
+    }
+  
+  
+  
+      @keyframes shakeCard {
+          0%, 100% { transform: translateX(0); }
+          20% { transform: translateX(-3px); }
+          40% { transform: translateX(3px); }
+          60% { transform: translateX(-2px); }
+          80% { transform: translateX(2px); }
+      }
+      
+      /* Appliquer l’effet au hover */
+      .allservice-card:hover {
+          animation: shakeCard 0.5s; /* durée 0.5s */
+          /* box-shadow: 0 8px 20px rgba(0,0,0,0.15); */
+          background: rgba(145,40,56,0.03); /* 15% */
+      }
+  
+  
+  
+  
+  
+  
+      /* Section: Informations Légales */
+        
+          .underline {
+          width: 60px;
+          height: 3px;
+          background: #005078; /* bleu frais */
+          margin-top: 8px;
+          border-radius: 2px;
+        }
+        
+        .infosLegales .card {
+          border: none;
+          border-radius: 10px;
+        }
+        
+        .infosLegales .card-body {
+          font-size: 0.95rem;
+        }
+        
+        .infosLegales h5 {
+          color: #1d4ed8; /* bleu principal */
+        }
+  
+        
+        .divider {
+          border: 0;
+          border-top: 1.5px solid #e5e7eb; /* gris clair élégant */
+          margin: 0.75rem 0;
+          opacity: 0.8;
+        }
+        
+        .infosLegales .card {
+          border: none;
+          border-radius: 12px;
+        }
+        
+        .infosLegales .card-body p {
+          margin: 0.5rem 0;
+          font-size: 0.95rem;
+        }
+        
+    
+
+
+
+
+
+
+
+  :root{
+    --brand:#005078;
+    --ink:#0a2230;
+    --muted:#4a6a7d;
+    --card:#fff;
+    --radius:14px;
+    --shadow:0 6px 18px rgba(0,0,0,.08);
+  }
+
+  .histoire{
+    padding:60px 0;
+    background:#f8fafc;
+  }
+  .container{max-width:1100px;margin:auto;padding:0 20px;}
+
+  .histoire__title{
+    text-align:center;margin:0 0 24px;
+    font-family:'Segoe UI',sans-serif;
+    font-weight:800;color:var(--ink);
+  }
+  .histoire__title span{font-size:clamp(24px,4vw,36px);}
+  .histoire__underline{
+    display:block;height:3px;width:0;margin:10px auto 0;
+    background:var(--brand);border-radius:999px;
+    animation:underline 1s ease forwards;
+  }
+  @keyframes underline{to{width:120px}}
+
+  .histoire__grid{
+    display:grid;grid-template-columns:1.1fr .9fr;gap:24px;
+  }
+  @media(max-width:900px){.histoire__grid{grid-template-columns:1fr;}}
+
+  .card{
+    background:var(--card);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:20px;
+  }
+  .paragraphe{
+    color:var(--ink);line-height:1.7;font-size:15px;
+    text-align:justify;margin:0 0 14px;
+  }
+  .paragraphe strong{color:var(--brand);}
+
+  .histoire__badges{
+    display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 0;padding:0;list-style:none;
+  }
+  .histoire__badges li{
+    background:rgba(0,80,120,.1);color:var(--brand);
+    padding:6px 10px;border-radius:999px;font-size:.9rem;
+  }
+
+  .histoire__services{display:grid;gap:14px;}
+  .service-card{
+    background:#fff;border:1px solid rgba(0,80,120,.15);
+    border-radius:var(--radius);padding:14px;
+    transition:.3s;box-shadow:var(--shadow);
+  }
+  .service-card:hover{transform:translateY(-6px);box-shadow:0 10px 20px rgba(0,0,0,.12);}
+  .service-card h6{margin:0 0 6px;color:var(--brand);font-weight:700;}
+  .service-card small{color:var(--muted);line-height:1.4;display:block;}
+
+  /* Animations */
+  .reveal-left,.reveal-right{opacity:0;transform:translateY(10px);}
+  .in-view.reveal-left{animation:slideInLeft .7s ease forwards;}
+  .in-view.reveal-right{animation:slideInRight .7s ease forwards;}
+  @keyframes slideInLeft{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:none}}
+  @keyframes slideInRight{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+
+  .count{color:var(--brand);font-weight:800;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

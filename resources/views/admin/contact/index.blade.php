@@ -1,0 +1,39 @@
+@extends('layouts.admin')
+
+@section('content')
+<div class="container">
+    <h4 class="mb-4">Messages de Contact</h4>
+
+    @if($contacts->isEmpty())
+        <p class="text-muted">Aucun message reçu.</p>
+    @else
+        <table class="table table-striped table-bordered">
+            <thead class="table-primary">
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Prestation</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($contacts as $contact)
+                <tr>
+                    <td>{{ $contact->nom }}</td>
+                    <td>{{ $contact->prenom }}</td>
+                    <td>{{ $contact->email }}</td>
+                    <td>{{ $contact->tel }}</td>
+                    <td>{{ $contact->prestation }}</td>
+                    <td>{{ Str::limit($contact->message, 50) }}</td>
+                    <td>{{ $contact->created_at->format('d/m/Y H:i') }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        {{ $contacts->links() }}
+    @endif
+</div>
+@endsection

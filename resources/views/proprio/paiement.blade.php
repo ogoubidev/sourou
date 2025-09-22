@@ -21,22 +21,16 @@
                         <th>Locataire</th>
                         <th>Bien</th>
                         <th>Montant</th>
-                        <th>Statut</th>
                         <th>Date</th>
-                        <th></th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($paiements as $paiement)
                         <tr>
-                            <td>{{ $paiement->attribution->client->name ?? '—' }}</td>
+                            <td>{{  $paiement->attribution->client->name.' '.$paiement->attribution->client->surname ?? '—' }}</td>
                             <td>{{ $paiement->attribution->bien->titre ?? '—' }}</td>
                             <td><strong>{{ number_format($paiement->montant, 0, ',', ' ') }} FCFA</strong></td>
-                            <td>
-                                <span class="badge bg-{{ $paiement->statut == 'payé' ? 'success' : 'warning' }}">
-                                    {{ ucfirst($paiement->statut) }}
-                                </span>
-                            </td>
                             <td>{{ $paiement->created_at->format('d/m/Y') }}</td>
                             <td>
                                 <!-- Bouton modal -->
@@ -57,14 +51,21 @@
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                               </div>
                               <div class="modal-body">
-                                <p><strong>Locataire :</strong> {{ $paiement->attribution->client->name ?? '—' }}</p>
+                                <p><strong>Locataire :</strong> {{ $paiement->attribution->client->name.' '.$paiement->attribution->client->surname ?? '—' }}</p>
                                 <p><strong>Bien :</strong> {{ $paiement->attribution->bien->titre ?? '—' }}</p>
                                 <p><strong>Montant :</strong> {{ number_format($paiement->montant, 0, ',', ' ') }} FCFA</p>
-                                <p><strong>Statut :</strong> {{ ucfirst($paiement->statut) }}</p>
+                                <p><strong>Statut de l'attribution:</strong> 
+                                    @if($paiement->attribution->paiements_effectues == 0)
+                                        <span class="badge mt-2 bg-danger">Impayé</span>
+                                    @elseif($paiement->attribution->paiements_effectues >= $paiement->attribution->mois_total)
+                                        <span class="badge bg-success">Payé</span>
+                                    @else
+                                        <span class="badge bg-warning">En cours</span>
+                                    @endif
+                                </p>
                                 <p><strong>Date :</strong> {{ $paiement->created_at->format('d/m/Y') }}</p>
                                 <p><strong>Heure :</strong> {{ $paiement->created_at->format('H:i:s') }}</p>
-                                <p><strong>Méthode :</strong> {{ $paiement->methode ?? 'Non spécifié' }}</p>
-                                <p><strong>Référence :</strong> {{ $paiement->reference ?? '—' }}</p>
+                                <p><strong>Mode :</strong> {{ $paiement->mode ?? 'Non spécifié' }}</p>
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>

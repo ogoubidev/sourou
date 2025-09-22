@@ -40,6 +40,7 @@
                     <option value="parcelles" {{ old('categorie')=='parcelles' ? 'selected' : '' }}>Parcelles</option>
                     <option value="vehicules" {{ old('categorie')=='vehicules' ? 'selected' : '' }}>Véhicules</option>
                     <option value="mobilier" {{ old('categorie')=='mobilier' ? 'selected' : '' }}>Mobilier</option>
+  <option value="appartements" {{ old('categorie')=='appartements' ? 'selected' : '' }}>Appartements</option>
                 </select>
                 @error('categorie')
                     <span class="invalid-feedback">{{ $message }}</span>

@@ -15,105 +15,105 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
-
-        body{
-            background: rgba(15, 63, 88, 0.6)
+        body {
+          background: rgba(15, 63, 88, 0.6);
         }
-                    /* Sidebar */
+    
+        /* --- Sidebar --- */
         .sidebar {
-            background-color: #1E293B;
-            min-height: 100vh;
-            color: white;
-            position: fixed;
-            width: 240px;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: start;
+          background-color: #1E293B;
+          min-height: 100vh;
+          color: white;
+          position: fixed;
+          width: 240px;
+          transition: all 0.3s ease;
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          z-index: 1050;
         }
-
-        /* Logo */
         .sidebar .logo {
-            text-align: center;
-            margin-bottom: 20px;
+          text-align: center;
+          margin-bottom: 20px;
         }
         .sidebar .logo img {
-            width: 45px;
-            height: 45px;
+          width: 45px;
+          height: 45px;
         }
         .sidebar .logo h5 {
-            margin-top: 8px;
-            font-size: 16px;
+          margin-top: 8px;
+          font-size: 16px;
         }
-
-        /* Liens */
         .sidebar a {
-            color: #E2E8F0;
-            text-decoration: none;
-            padding: 12px 15px;
-            display: flex;
-            align-items: center;
-            border-radius: 6px;
-            margin-bottom: 8px;
-            font-size: 15px;
-            transition: background 0.2s;
+          color: #E2E8F0;
+          text-decoration: none;
+          padding: 12px 15px;
+          display: flex;
+          align-items: center;
+          border-radius: 6px;
+          margin-bottom: 8px;
+          font-size: 15px;
+          transition: background 0.2s;
         }
         .sidebar a i {
-            font-size: 18px;
-            margin-right: 10px;
+          font-size: 18px;
+          margin-right: 10px;
         }
-        .sidebar a.active, .sidebar a:hover {
-            background-color: #334155;
-            color: #fff;
+        .sidebar a.active,
+        .sidebar a:hover {
+          background-color: #334155;
+          color: #fff;
         }
-
-        /* Responsive : icons only */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 70px;
-                align-items: center;
-            }
-            .sidebar a {
-                justify-content: center;
-            }
-            .sidebar a span {
-                display: none; /* cacher les textes */
-            }
-            .sidebar a i {
-                margin-right: 0;
-                font-size: 20px;
-            }
-            .sidebar .logo h5, 
-            .sidebar .logo small {
-                display: none; /* cacher le texte du logo */
-            }
-        }
-
-        /* Navbar */
-        .navbar {
-            background-color: #334155;
-            color: white;
-            margin-left: 240px;
-            transition: margin-left 0.3s ease;
-        }
-        @media (max-width: 768px) {
-            .navbar {
-                margin-left: 70px;
-            }
-        }
-
-        /* Content */
+    
+        /* --- Navbar & Content (PC) --- */
+        .navbar,
         .content {
-            margin-left: 240px;
-            padding: 20px;
-            transition: margin-left 0.3s ease;
+          margin-left: 240px;
+          transition: margin-left 0.3s ease;
         }
+        .navbar {
+          background-color: #334155;
+          color: white;
+        }
+    
+        /* --- Responsive --- */
         @media (max-width: 768px) {
-            .content {
-                margin-left: 70px;
-            }
+          .sidebar {
+            width: 70px;
+            align-items: center;
+          }
+          .sidebar a {
+            justify-content: center;
+          }
+          .sidebar a span {
+            display: none;
+          }
+          .sidebar a i {
+            margin-right: 0;
+            font-size: 20px;
+          }
+          .sidebar .logo h5,
+          .sidebar .logo small {
+            display: none;
+          }
+    
+          .navbar,
+          .content {
+            margin-left: 0; /* contenu en pleine largeur */
+          }
         }
-
+    
+        @media (max-width: 768px) {
+        .navbar,
+        .content {
+            margin-left: 70px; /* Décale le contenu du même espace que la sidebar réduite */
+        }
+        }
+    
+    
+        .content {
+          padding: 20px;
+        }
     </style>
 </head>
 <body>
@@ -135,11 +135,11 @@
       </a>
 
       <a href="{{ route('proprietaire.biens') }}" class="{{ request()->routeIs('proprietaire.biens') ? 'active' : '' }}">
-          <i class="bi bi-file-earmark-text"></i> <span>Mes Biens</span>
+          <i class="bi bi-car-front"></i> <span>Mes Biens</span>
       </a>
 
       <a href="{{ route('proprietaire.locataires') }}" class="{{ request()->routeIs('proprietaire.locataires*') ? 'active' : '' }}">
-          <i class="bi bi-person"></i> <span>Mes locataires</span>
+          <i class="bi bi-people"></i> <span>Mes locataires</span>
       </a>
 
       <a href="{{ route('proprietaire.paiements') }}" class="{{ request()->routeIs('proprietaire.paiements') ? 'active' : '' }}">
@@ -162,9 +162,8 @@
 
     <!-- Navbar -->
     <nav class="navbar p-3 justify-content-between">
-        <span><i class="bi bi-person-circle"></i> Propriétaire connecté : </span>
+        <span><i class="bi bi-person-circle"></i> Propriétaire connecté : {{ $proprio->name.' '.$proprio->surname }}</span>
         <div class="d-flex align-items-center gap-3">
-            {{-- 🔔 Cloche notifications --}}
             @include('partials.notifications-bell')
         </div>
     </nav>

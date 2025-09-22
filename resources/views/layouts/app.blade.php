@@ -227,14 +227,30 @@
                 <a class="nav-link text-light {{ request()->is('contact') ? 'active' : '' }}" href="/contact">Contact</a>
             </li>
           </ul>
+
+          <!-- Recherche + Inscription (mobile) -->
+          <div class="d-lg-none mt-3 text-center">
+            <form action="{{ route('catalogue') }}" method="get" class="mb-2">
+              <div class="search-wrapper w-100">
+                <input type="text" name="query" class="search-bar w-100" 
+                      placeholder="Rechercher un bien..." value="{{ request('query') }}">
+                <button type="submit" class="btn search-btn">
+                  <i class="bi bi-search text-info"></i>
+                </button>
+              </div>
+            </form>          
+            <form action="{{ route('register') }}" method="get">
+              <button class="btn btn-sm btn-outline-info rounded-3 px-3 w-100">S'inscrire</button>
+            </form>
+          </div>
         </div>
 
-      
-
-        <div class="d-flex align-items-center gap-2">
+        <!-- Recherche + Inscription (version desktop) -->
+        <div class="d-none d-lg-flex align-items-center gap-2">
           <form action="{{ route('catalogue') }}" method="get" class="d-flex align-items-center">
             <div class="search-wrapper">
-              <input type="text" name="query" class="search-bar" placeholder="Rechercher un bien..." value="{{ request('query') }}">
+              <input type="text" name="query" class="search-bar" 
+                    placeholder="Rechercher un bien..." value="{{ request('query') }}">
               <button type="submit" class="btn search-btn">
                 <h5><i class="bi bi-search text-info"></i></h5>
               </button>
@@ -266,7 +282,7 @@
     <a href="https://www.facebook.com/" target="_blank" class="contact-option contact-bottom" title="Facebook">
       <i class="bi bi-facebook"></i>
     </a>
-    <a href="https://wa.me/2290196233121" target="_blank" class="contact-option contact-left" title="WhatsApp">
+    <a href="https://wa.me/22996233121" target="_blank" class="contact-option contact-left" title="WhatsApp">
       <i class="bi bi-whatsapp"></i>
     </a>
   </div>
@@ -306,11 +322,11 @@
         <!-- Colonne 2 : Contact -->
         <div class="col-md-4 mb-4">
           <h5 class="mb-3 border-bottom border-light pb-2">Contact</h5>
-          <p><i class="bi bi-geo-alt-fill me-2 text-light"></i>PORTO NOVO, BÉNIN</p>
+          <p><i class="bi bi-geo-alt-fill me-2 text-light"></i>Porto-Novo, Gbodjè(Bénin) à 200 mettre de le l'église catholique Saint Antoine de Padoue</p>
           <p><i class="bi bi-telephone-fill me-2 text-light"></i>+229 01 96 23 31 21</p>
           <p><i class="bi bi-telephone-fill me-2 text-light"></i>+229 01 56 00 19 30</p>
           <p><i class="bi bi-envelope-fill me-2 text-light"></i>contact@sourouimmobilier.com</p>
-          <p><i class="bi bi-globe me-2 text-light"></i>sourouimmobilier.com</p>
+          <p><i class="bi bi-globe me-2 text-light"></i>sourouimmobilier.com</ap>
         </div>
   
         <!-- Colonne 3 : Infos légales -->

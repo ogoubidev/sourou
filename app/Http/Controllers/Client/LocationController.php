@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Models\Bien;
 use App\Models\Location;
-use Illuminate\Support\Facades\Validator;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 
 class LocationController extends Controller
@@ -39,7 +41,7 @@ class LocationController extends Controller
             'user_id'    => auth()->id(),
             'date_debut' => $request->date_debut,
             'date_fin'   => $request->date_fin,
-        ]);
+        ]); 
     
         return redirect()->back()->with('success', 'Votre demande de location a été enregistrée !');
     }

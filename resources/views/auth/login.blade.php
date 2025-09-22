@@ -45,11 +45,6 @@
           <div class="d-grid mb-3">
             <button type="submit" class="btn btn-primary">Se connecter</button>
           </div>
-
-          {{-- Lien mot de passe oublié --}}
-          <div class="text-center">
-            <a href="{{ route('password.request') }}" class="text-primary">Mot de passe oublié ?</a>
-          </div>
         </form>
       </div>
 

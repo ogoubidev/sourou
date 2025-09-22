@@ -4,8 +4,9 @@ use App\Http\Controllers\Admin\AttributionController;
 use App\Http\Controllers\Admin\BienController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\PaiementController;
+use App\Http\Controllers\Admin\DemandeController;
 
+use App\Http\Controllers\Admin\PaiementController;
 use App\Http\Controllers\Admin\ParametreControler;
 use App\Http\Controllers\Admin\TemoignageController;
 use App\Http\Controllers\Admin\UserController;
@@ -13,19 +14,21 @@ use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\AdminPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Client\AttributionController as ClientAttributionController;
+
 use App\Http\Controllers\Client\ContratController;
 
 use App\Http\Controllers\Client\DashboardController as ClientDashboard;
-
 use App\Http\Controllers\Client\LocationController;
 use App\Http\Controllers\Client\PaiementController as ClientPaiementController;
+
+
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PasswordController;
+
 use App\Http\Controllers\ProfileController;
-
 use App\Http\Controllers\Proprietaire\BienController as ProprietaireBienController;
-use App\Http\Controllers\Proprietaire\DashboardController as ProprietaireDashboardController;
 
+use App\Http\Controllers\Proprietaire\DashboardController as ProprietaireDashboardController;
 use App\Http\Controllers\Proprietaire\LocataireController;
 use App\Http\Controllers\Proprietaire\PaiementController as ProprietairePaiementController;
 use App\Http\Controllers\Proprietaire\RapportController;
@@ -34,6 +37,12 @@ use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Route;
 
 
+// Reinitialisation de mot de passe propriétaire via l'admin car c'est lui qui communique au proprio concerné
+use App\Http\Controllers\Admin\ProprietairePasswordController;
+
+// Reinitialisation de mot de passe client sans implication de l'admin
+use App\Http\Controllers\Auth\ClientForgotPasswordController;
+use App\Http\Controllers\Auth\ClientChangePasswordController;
 
 
 /*
@@ -48,8 +57,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('accueil');
 });
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -124,26 +134,62 @@ Route::post('client/login', [LoginController::class, 'clientLogin'])->name('clie
 Route::post('client/logout', [LoginController::class, 'clientLogout'])->name('client.logout');
 
 
+
+Route::prefix('client')->name('client.')->group(function () {
+    // Formulaire pour demander le mot de passe temporaire
+    Route::get('password/forgot', [ClientForgotPasswordController::class, 'showForgotForm'])
+        ->name('password.request');
+
+    // Envoi du mot de passe temporaire (POST)
+    Route::post('password/forgot', [ClientForgotPasswordController::class, 'sendTemporaryPassword'])
+        ->name('password.send-temp');
+
+    // Formulaire pour que l'utilisateur change son mot de passe après s'être connecté
+    Route::get('password/change', [ClientChangePasswordController::class, 'showChangeForm'])
+        ->name('password.change')
+        ->middleware('auth'); // accéder seulement si connecté
+
+    Route::post('password/change', [ClientChangePasswordController::class, 'updatePassword'])
+        ->name('password.update')
+        ->middleware('auth');
+});
+
+
 Route::middleware(['auth'])->group(function () {
 
     // ADMIN
     Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
+
+        Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
         Route::resource('dashboard', DashboardController::class)->only('index');
         Route::resource('biens', BienController::class);
         Route::resource('attributions', AttributionController::class)->only(['index','create','store']);
         Route::patch('attributions/{attribution}/terminer', [AttributionController::class, 'terminer'])->name('attributions.terminer');
+        Route::patch('attributions/{attribution}/relancer', [AttributionController::class, 'relancer'])->name('attributions.relancer');
         Route::get('contacts', [ContactController::class, 'index'])->name('contacts.index');
+        Route::delete('/admin/attributions/{attribution}/annuler', [AttributionController::class, 'annuler'])->name('attributions.annuler');
 
         // Gestion témoignages
         Route::resource('temoignages', TemoignageController::class)->except(['create','store','show']);
+
+
+        // Réinitialiser le mot de passe des proprietaire par l'admin
+        Route::post('/admin/proprietaires/reset-password', [ProprietairePasswordController::class, 'reset'])
+        ->name('proprietaires.reset-password');
+    
 
         Route::resource('users', UserController::class)->only(['index','create','store']);
         Route::resource('paiements', PaiementController::class)->only(['index','create','store']);
         Route::get('parametre', [ParametreControler::class, 'index'])->name('parametre');
 
         // Demandes de location
-        Route::get('demandes', [App\Http\Controllers\Admin\DemandeController::class, 'index'])->name('demandes.index');
-        Route::post('demandes/{demande}/approuver', [App\Http\Controllers\Admin\DemandeController::class, 'approuver'])->name('demandes.approuver');
+        Route::get('demandes', [DemandeController::class, 'index'])->name('demandes.index');
+        Route::post('demandes/{demande}/approuver', [DemandeController::class, 'approuver'])->name('demandes.approuver');
+
+        Route::get('/demandes', [DemandeController::class, 'index'])->name('demandes.index');
+        Route::post('/demandes/{demande}/approuver', [DemandeController::class, 'approuver'])->name('demandes.approuver');
+        Route::get('/demandes/historique', [DemandeController::class, 'historique'])->name('demandes.historique');
 
     });
 
@@ -163,22 +209,31 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware('role:client')->prefix('client')->name('client.')->group(function () {
         Route::get('/dashboard', [ClientDashboard::class, 'index'])->name('dashboard');
         Route::get('/contrats', [ContratController::class, 'index'])->name('contrats');
-        Route::get('/paiements', [ClientPaiementController::class, 'index'])->name('paiements');
+        Route::get('/paiements', [\App\Http\Controllers\Client\PaiementController::class, 'index'])->name('paiements');
 
         // Location via modal
-        Route::post('/biens/{bien}/louer', [LocationController::class, 'store'])
-             ->name('biens.louer');
+        Route::post('/biens/{bien}/louer', [LocationController::class, 'store'])->name('biens.louer');
+
+        Route::get('contrats_payes/historique', [ContratController::class, 'historique'])->name('contrats_payes.historique');
+
+        // Paiement d'un contrat via Fedapay (Enregistrement du paiement (appel AJAX après succès FedaPay))
+        Route::post('/paiements/store', [\App\Http\Controllers\Client\PaiementController::class, 'store'])
+            ->name('paiements.store');
+
+        // Webhook FedaPay
+        Route::post('/webhook/fedapay', [App\Http\Controllers\Webhook\FedaPayController::class, 'handle']);
 
     });
 
-    // Paiements
-    Route::get('/paiements', [ClientPaiementController::class, 'index'])->name('paiements');
+
+
 
 
     // TEMOIGNAGES (Client ou Propriétaire) 
     Route::get('/temoignages/create', [TemoignageController::class, 'create'])->name('temoignages.create');
     Route::post('/temoignages', [TemoignageController::class, 'store'])->name('temoignages.store');
 });
+
 
 
 

@@ -1,0 +1,63 @@
+      /* Resonsvté de la table */
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+        min-width: 600px; /* pour éviter que la table ne se rétrécisse trop */
+    }
+    
+    thead tr {
+        background-color: #005078;
+        color: white;
+        text-align: left;
+    }
+    
+    thead td {
+        padding: 10px;
+    }
+    
+    tbody tr:nth-child(odd) {
+        background-color: #f9f9f9;
+    }
+    
+    tbody tr:nth-child(even) {
+        background-color: #e9ecef;
+    }
+    
+    tbody tr:hover {
+        background-color: #007BFF;
+        color: #000;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    
+    tbody td {
+        padding: 8px 12px;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    /* Container responsive pour la table */
+    .card-body {
+        overflow-x: auto; /* ajout du scroll horizontal si écran trop petit */
+    }
+    
+    /* Amélioration responsive pour petits écrans */
+    @media (max-width: 768px) {
+        table {
+            font-size: 14px;
+        }
+        thead td, tbody td {
+            padding: 6px 8px;
+        }
+
+        .identifiant {
+            display: none;
+        }
+
+        .action {
+            flex-direction: column;
+           flex: 2;
+        }
+    }
+    

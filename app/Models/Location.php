@@ -14,6 +14,7 @@ class Location extends Model
         'user_id',
         'date_debut',
         'date_fin',
+        'statut',
     ];
 
 

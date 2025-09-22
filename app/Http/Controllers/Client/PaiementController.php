@@ -4,29 +4,51 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Paiement;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Attribution;
+use Illuminate\Http\Request;
 
 class PaiementController extends Controller
 {
     public function index()
     {
-        $clientId = Auth::id();
+        $paiements = Paiement::whereHas('attribution', function ($q) {
+            $q->where('client_id', auth()->id());
+        })->latest()->get();
 
-        // Récupère tous les paiements liés aux attributions du client connecté
-        $paiements = Paiement::with(['attribution.bien', 'attribution.client'])
-            ->whereHas('attribution', function ($q) use ($clientId) {
-                $q->where('client_id', $clientId);
-            })
-            ->orderByDesc('date_paiement')
-            ->get();
+        return view('client.paiements.index', compact('paiements'));
+    }
 
-        $base = Paiement::whereHas('attribution', fn($q) => $q->where('client_id', $clientId));
-        $stats = [
-            'total_paye'         => (clone $base)->where('status_paiement', 'paye')->sum('montant'),
-            'total_reste_a_payer'=> (clone $base)->where('status_paiement', 'reste_a_payer')->sum('montant'),
-            'total_impaye'       => (clone $base)->where('status_paiement', 'impaye')->sum('montant'),
-        ];
+    public function store(Request $request)
+    {
+        $request->validate([
+            'attribution_id' => 'required|exists:attributions,id',
+            'montant'        => 'required|numeric|min:1',
+        ]);
 
-        return view('client.paiements', compact('paiements', 'stats'));
+        $attribution = Attribution::findOrFail($request->attribution_id);
+
+        // Enregistrement du paiement
+        $paiement = Paiement::create([
+            'attribution_id'  => $attribution->id,
+            'montant'         => $request->montant,
+            'date_paiement'   => now(),
+            'mode'            => 'mobile_money',
+            'status_paiement' => 'paye',
+        ]);
+
+        // Incrémenter le compteur de paiements
+        $attribution->increment('paiements_effectues');
+
+        // Vérifier si tout est payé
+        if ($attribution->paiements_effectues >= $attribution->mois_total) {
+            $attribution->update(['statut_paiement' => 'paye']);
+        }
+
+        return response()->json([
+            'success'  => true,
+            'message'  => 'Paiement enregistré avec succès',
+            'paiement' => $paiement,
+            'paiements_effectues' => $attribution->paiements_effectues,
+        ]);
     }
 }

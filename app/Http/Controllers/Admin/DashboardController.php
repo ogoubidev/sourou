@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attribution;
 use App\Models\Bien;
 use App\Models\Paiement;
 use App\Models\User;
@@ -17,6 +18,8 @@ class DashboardController extends Controller
     {
         $users = User::latest()->take(10)->get();
 
+        $transactions = Paiement::latest()->take(4)->get();
+
         return view('admin.dashboard', [
             'nombreProprio'      => User::where('role', 'proprietaire')->count(),
             'nombreClients'      => User::where('role', 'client')->count(),
@@ -27,6 +30,8 @@ class DashboardController extends Controller
                                              ->take(5)
                                              ->get(),
             'articlesRecents'    => Bien::latest()->take(5)->get(),
+            'transactions' =>  Paiement::latest()->take(6)->get(),
+            'attributions' => Attribution::latest()->take(6)->get(),
         ]);
     }
     

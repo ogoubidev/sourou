@@ -13,6 +13,10 @@ class Paiement extends Model
         'attribution_id', 'montant', 'date_paiement', 'mode', 'status_paiement'
     ];
 
+    protected $casts = [
+        'date_paiement' => 'date',
+    ];
+
     // Paiement → Attribution
     public function attribution()
     {

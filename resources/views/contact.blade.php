@@ -7,8 +7,8 @@
 @section('content')
 
 <section class="hero">
-    <h1>Contactez nos Experts</h1>
-    <p>Notre équipe d'experts immobiliers est à votre écoute pour vous accompagner dans tous vos projets</p>
+    <h1 class="pt-5 mb-0" >Contactez nos Experts</h1>
+    <p class="mb-0">Notre équipe d'experts immobiliers est à votre écoute pour vous accompagner dans tous vos projets</p>
 </section>
 
 <section class="contact-section container">

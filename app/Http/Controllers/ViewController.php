@@ -22,6 +22,8 @@ class ViewController extends Controller
     // Méthode catalogue fusionnée
     public function catalogue(Request $request)
     {
+        $this->synchroniserBiens();
+
         $query = $request->query('query');
 
         $biens = Bien::with('proprietaire')
@@ -36,5 +38,20 @@ class ViewController extends Controller
     public function contact()
     {
         return view('contact');
+    }
+
+    //Petite fonction de synchro locale
+    private function synchroniserBiens()
+    {
+        $biens = Bien::with('attributions')->get();
+
+        foreach ($biens as $bien) {
+            $lastAtt = $bien->attributions->last();
+
+            if ($lastAtt && $lastAtt->date_fin < now() && $bien->statut === 'attribue') {
+                $lastAtt->update(['status' => 'terminee']);
+                $bien->update(['statut' => 'disponible']);
+            }
+        }
     }
 }

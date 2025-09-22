@@ -10,7 +10,7 @@
 
 <section class="hero">
     <div class="mt-2 mb-2">
-        <h1 class="fw-bold" style="">
+        <h1 class="fw-bold mb-0 pt-5">
             À Propos de Sourou Immobilier
         </h1>
     </div>
@@ -114,60 +114,6 @@
     </div>
 </section>
 
-{{-- <section class="histoire py-5">
-    <h3 class="text-center fw-bold pb-3 mb-0" style="color: #005078; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Notre Histoire</h3>
-    <div class="underline mx-auto my-0 mt-0"></div>
-    <div class="container py-3">
-        <div class="row">
-            <div class="col-md-6 border border-2 service-card rounded rounded-3 p-4 animate__animated animate__fadeInLeft">
-                <p class="pargrahe1">
-                    Fondée au cœur du Bénin, Sourou Immobilier s'est établie comme une référence incontournable dans le secteur immobilier. Notre entreprise familiale a grandi avec une vision claire : offrir à nos clients des services immobiliers de qualité supérieure, caractérisés par la transparence, l'expertise et un accompagnement personnalisé.
-                </p>
-                <p class="pargrahe1">
-                    Au fil des années, nous avons développé une expertise unique dans la vente et la location de biens immobiliers, tout en élargissant notre offre pour inclure véhicules et mobilier. Cette diversification nous permet de répondre à tous les besoins de nos clients sous un même toit.
-                </p>
-                <p class="pargrahe1">
-                    Aujourd'hui, avec plus de 500 clients satisfaits et 300 biens vendus, nous continuons d'innover et d'améliorer nos services pour rester à la pointe du marché immobilier béninois.
-                </p>
-            </div>
-            <div class="col-md-6 flex-direction-column animate__animated animate__fadeInRight">
-                <div class="service-card my-1 p-2 border border-2 rounded rounded-3">
-                    <h6 class="fw-bold" style="color: #005078">Immobilier Résidentiel</h6>
-                    <p class="fw-semibold" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Vente et location de maisons, appartements, villas avec un accompagnement complet</p>
-                    
-                    <div class="atouts-container mb-0">
-                        <p class="atouts-item">Évaluation précise</p>
-                        <p class="atouts-item">Marketing ciblé</p>
-                        <p class="atouts-item">Négociation experte</p>
-                    </div>
-                </div>                  
-                <div class="service-card my-1 p-2 border border-2 rounded rounded-3">
-                    <h6 class="fw-bold" style="color: #005078">Terrains & Parcelles</h6>
-                    <p class="fw-semibold" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Acquisition de terrains viabilisés et non viabilisés dans les meilleures zones</p>
-                    
-                    <div class="atouts-container mb-0">
-                        <p class="atouts-item">Vérification juridique</p>
-                        <p class="atouts-item">Étude de faisabilité</p>
-                        <p class="atouts-item">Conseil en investissement</p>
-                    </div>
-                </div> 
-                <div class="service-card my-1 p-2 border border-2 rounded rounded-3">
-                    <h6 class="fw-bold" style="color: #005078">Services Connexes</h6>
-                    <p class="fw-semibold" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Véhicules et mobilier pour compléter votre projet d'installation</p>
-                    
-                    <div class="atouts-container mb-0">
-                        <p class="atouts-item">Sélection rigoureuse</p>
-                        <p class="atouts-item">Garantie qualité</p>
-                        <p class="atouts-item">Service après vente</p>
-                    </div>
-                </div> 
-            </div>
-        </div>
-    </div>
-</section> --}}
-
-
-
 <section class="histoire" id="histoire">
     <div class="histoire__wrap container">
       <h3 class="histoire__title" aria-label="Notre Histoire">
@@ -178,15 +124,29 @@
       <div class="histoire__grid">
         <article class="histoire__about card reveal-left" role="article">
           <p class="paragraphe">
-            Fondée au cœur du Bénin, <strong>Sourou Immobilier</strong> s'est établie comme une référence incontournable dans le secteur immobilier. Notre entreprise familiale a grandi avec une vision claire : offrir à nos clients des services immobiliers de qualité supérieure, caractérisés par la transparence, l'expertise et un accompagnement personnalisé.
+          <strong> SOUROU IMMOBILIER SERVICE SARL</strong> est née d’une vision claire : apporter des solutions simples, sécurisées et accessibles à tous dans le domaine de l’immobilier au Bénin.
+             création, nous avons compris que l’acquisition ou la gestion d’un bien immobilier n’est pas seulement une transaction financière, mais un projet de vie, souvent le rêve d’une famille ou l’investissement d’une vie.
+
           </p>
           <p class="paragraphe">
-            Au fil des années, nous avons développé une expertise unique dans la vente et la location de biens immobiliers, tout en élargissant notre offre pour inclure véhicules et mobilier. Cette diversification nous permet de répondre à tous les besoins de nos clients sous un même toit.
+           Avec passion et professionnalisme, notre équipe a bâti une réputation fondée sur trois valeurs essentielles : la confiance, la transparence et la satisfaction du client. C’est pourquoi nous mettons un point d’honneur à offrir :
+            <br>Des terrains sécurisés, avec tous les documents légaux nécessaires ;
+
+            Un service de gestion locative fiable et rigoureux, qui soulage les propriétaires tout en protégeant les intérêts des locataires ;
+
+            Des offres accessibles, adaptées aussi bien aux jeunes investisseurs qu’aux familles qui souhaitent bâtir leur avenir.
+
           </p>
           <p class="paragraphe">
-            Aujourd'hui, avec plus de <span class="count" data-to="500">500</span> clients satisfaits et <span class="count" data-to="300">300</span> biens vendus, nous continuons d'innover et d'améliorer nos services pour rester à la pointe du marché immobilier béninois.
+           Au fil des années, nous avons accompagné de nombreux clients qui, grâce à nous, ont pu réaliser leur rêve d’avoir un chez-soi ou un investissement rentable. Leur confiance renouvelée reste notre plus grande fierté et notre meilleure publicité.
+.
           </p>
-  
+            <p class="paragraphe">
+              Notre slogan, <strong>« Votre satisfaction, notre priorité »</strong>, n’est pas qu’une phrase. C’est l’engagement quotidien de notre Directeur Général, M. Nino S. GBODOGBE, et de toute son équipe à toujours vous offrir un service de qualité, où chaque client est écouté, conseillé et accompagné jusqu’au bout de son projet.
+           </p>
+            <p class="paragraphe">
+                Aujourd’hui, <strong> SOUROU IMMOBILIER SERVICE SARL</strong> ne cesse d’innover pour se rapprocher de vous et vous garantir que l’immobilier au Bénin peut être un secteur de confiance et de réussite pour tous.
+            </p>
           <ul class="histoire__badges" aria-label="Nos points forts">
             <li>Transparence</li>
             <li>Expertise</li>
@@ -200,7 +160,7 @@
               <h6>Immobilier Résidentiel</h6>
               <small class="service-card__accent">Vente et location de maisons, appartements, villas avec un accompagnement complet</small>
             </header>
-            <div class="atouts-container">
+            <div class="atouts-container"> 
               <span class="atouts-item">Évaluation précise</span>
               <span class="atouts-item">Marketing ciblé</span>
               <span class="atouts-item">Négociation experte</span>
@@ -272,8 +232,14 @@
                 <center><img src="{{ asset('assets/images/pdg.jpg') }}" class="text-center rounded rounded-4 img-thumbnail mt-2" style="height: 330px; width: 450px" alt=""></center>
                 <div>
                     <h5 class="text-center" style="color: #005078"><strong>Président Directeur Générale</strong></h5>
-                    <p class="text-center fw-semibold">Gestion & Relation Client</p>
-                    <p class="text-center">Expert en gestion locative et relation client, elle assure le suivi personnalisé de nos clients et propriétaires. Son expertise garantit une gestion optimale de votre patrimoine immobilier.</p>
+                    <p class="text-center fw-semibold">Leadership et vision du PDG
+</p>
+                    <p class="text-center">En tant que President Directeur Général de SOUROU IMMOBILIER SERVICE SARL, M. Nino Sourou. GBODOGBE porte une vision claire et ambitieuse :
+faire de la société une référence incontournable de l’immobilier au Bénin, où chaque béninoise trouve une solution fiable, rapide et adaptée à ses besoins.
+
+Sa conviction est simple :
+👉 Un client satisfait aujourd’hui est l’ambassadeur de demain.
+Grâce à cette vision et à un leadership orienté vers la transparence, la confiance et l’innovation, SOUROU IMMOBILIER SERVICE SARL continue de grandir et de s’imposer comme un acteur majeur de l’immobilier au Bénin.</p>
                 </div>
                 <center>
                   <p class="atouts-item">Gestion Patrimoine</p>
@@ -374,7 +340,7 @@
               <hr class="divider">
               <p><i class="bi bi-envelope me-2"></i> contact@sourouimmobilier.com</p>
               <hr class="divider">
-              <p><i class="bi bi-geo-alt me-2"></i> PORTO NOVO / BENIN</p>
+              <p><i class="bi bi-geo-alt me-2"></i> Porto-Novo, Gbodjè(Bénin) à 200 mettre de le l'église catholique Saint Antoine de padoue</p>
             </div>
           </div>
         </div>

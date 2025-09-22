@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Attribution;
 use App\Models\Paiement;
 use App\Models\User;
 use FedaPay\FedaPay;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -28,17 +30,33 @@ class AppServiceProvider extends ServiceProvider
         // Injecte la liste des propriétaires dans le layout admin à chaque rendu
         View::composer('layouts.admin', function ($view) {
             $proprietaires = User::where('role', 'proprietaire')
-                ->select('id','name','email')
+                ->select('id','name', 'surname', 'email')
                 ->orderBy('name')
                 ->get();
-
             
             $paiements = Paiement::with('attribution.bien', 'attribution.client')
             ->orderBy('date_paiement', 'desc')
             ->get();
 
-            $view->with('proprietaires', $proprietaires);
+            $attributions = Attribution::with(['bien', 'client'])
+            ->get();
+
+            $view->with('proprietaires', $proprietaires)
+                 ->with('attributions', $attributions);
         });
+
+
+        View::composer('layouts.proprietaire', function($view) {
+            $proprio = Auth::user();
+            $view->with('proprio', $proprio);
+        });
+
+
+        View::composer('layouts.client', function ($view) {
+            $client = Auth::user(); // récupère l’utilisateur connecté
+            $view->with('client', $client); // injecte $client dans layouts.client
+        });
+
 
         // Injecter les 10 derniers témoignages dans toutes les vues publiques
         View::composer('*', function ($view) {

@@ -13,7 +13,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $proprioId = Auth::id();
+        $proprioId = Auth::id(); // On récupère l'ID DU PROPRI2TAIRE CONNECTÉ
 
         // Totaux
         $nombreLocataires  = Attribution::whereHas('bien', fn($q) => $q->where('proprietaire_id', $proprioId))->count();
@@ -21,12 +21,21 @@ class DashboardController extends Controller
         $nombreAttributions= Attribution::whereHas('bien', fn($q) => $q->where('proprietaire_id', $proprioId))->count();
         $nombreTransactions= Paiement::whereHas('attribution.bien', fn($q) => $q->where('proprietaire_id', $proprioId))->count();
 
+        $proprio = Auth::user();
+
         // Dernières transactions
         $transactionsRecentes = Paiement::with('attribution.bien', 'attribution.client')
             ->whereHas('attribution.bien', fn($q) => $q->where('proprietaire_id', $proprioId))
             ->latest()
             ->take(5)
             ->get();
+
+        // Derniers attributions
+        $attributionsRecentes = Attribution::with(['bien', 'client'])
+        ->whereHas('bien', fn($q) => $q->where('proprietaire_id', $proprioId))
+        ->latest('date_debut')
+        ->take(5)
+        ->get();
 
         // Derniers articles (si tu en as liés au proprio)
         $articlesRecents = Bien::latest()->take(5)->get();
@@ -37,7 +46,8 @@ class DashboardController extends Controller
             'nombreAttributions', 
             'nombreTransactions', 
             'transactionsRecentes', 
-            'articlesRecents'
+            'attributionsRecentes',
+            'proprio'
         ));
     }
 

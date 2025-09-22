@@ -3,14 +3,19 @@
 @section('content')
 <div class="container mt-4">
 
-    
 
     <div class="d-flex justify-content-between mb-3">
-        <h2 class="mb-4 fw-bold text-light">Mes Contrats</h2>
-        <div class="btn-group" role="group">
-            <button type="button" class="btn btn-outline-light active" id="btn-list">Liste</button>
-            <button type="button" class="btn btn-outline-light" id="btn-cards">Cards</button>
-        </div>
+        <h4 class="mb-0 fw-bold text-light">Mes Contrats</h4>
+        <h6>
+            <a href="{{ route('client.contrats_payes.historique') }}" class="btn btn-dark flex-direction-row">
+                Contrats payés
+            </a>
+        </h6>
+    </div>
+    
+    <div class="btn-group text-end mb-3" role="group">
+        <button type="button" class="btn btn-outline-light active" id="btn-list">Liste</button>
+        <button type="button" class="btn btn-outline-light" id="btn-cards">Cards</button>
     </div>
 
     @php
@@ -18,9 +23,9 @@
     @endphp
 
     {{-- Vue liste --}}
-    <div id="view-list">
-        <table class="table table-bordered table-striped">
-            <thead>
+    <div id="view-list" class="table-responsive">
+        <table class="table table-bordered table-striped  table-hover table-sm table-middle">
+            <thead class="table-primary">
                 <tr>
                     <th>#Id</th>
                     <th>Bien</th>
@@ -42,16 +47,21 @@
                         <td>{{ number_format($attribution->loyer_mensuel ?? 0, 0, ',', ' ') }} FCFA</td>
                         <td>
                             <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#bienModal{{ $attribution->bien->id }}">
-                                👁 Voir le bien
+                                👁 Voir
                             </button>     
-                            <button type="button" 
-                                    class="btn btn-success btn-sm mt-1"
-                                    id="pay-btn-{{ $attribution->id }}" 
+                        
+                            @if($attribution->statut_paiement != 'paye')
+                            <button type="button"
+                                    class="btn btn-danger btn-sm mt-1 pay-btn"
+                                    id="pay-btn-{{ $attribution->id }}"
+                                    data-id="{{ $attribution->id }}"
                                     data-montant="{{ $attribution->loyer_mensuel }}">
-                                  Payer le loyer
+                                Payer le loyer ({{ $attribution->paiements_effectues }}/{{ $attribution->mois_total }})
                             </button>
-
-                        </td>
+                            @else
+                                <span class="badge bg-success">Payé</span>
+                            @endif
+                        </td>                        
                     </tr>
                 @empty
                     <tr>
@@ -118,15 +128,20 @@
                         <p class="mb-1"><strong>Date début :</strong> {{ optional($attribution->date_debut)->format('d/m/Y') }}</p>
                         <p class="mb-1"><strong>Loyer :</strong> {{ number_format($attribution->loyer_mensuel ?? 0, 0, ',', ' ') }} FCFA</p>
                         <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#bienModal{{ $attribution->bien->id }}">
-                            👁 Voir le bien
-                        </button> 
-                            {{-- Bouton Payer via Fedapay --}}
-                            <button type="button" 
-                            class="btn btn-success btn-sm mt-1" 
-                            id="pay-btn-{{ $attribution->id }}" 
-                            data-montant="{{ $attribution->loyer_mensuel }}">
-                          Payer le loyer
+                            👁 Voir
                         </button>
+
+                        @if($attribution->statut_paiement != 'paye')
+                        <button type="button"
+                                class="btn btn-danger btn-sm mt-1 pay-btn"
+                                id="pay-btn-{{ $attribution->id }}"
+                                data-id="{{ $attribution->id }}"
+                                data-montant="{{ $attribution->loyer_mensuel }}">
+                            Payer le loyer ({{ $attribution->paiements_effectues }}/{{ $attribution->mois_total }})
+                        </button>
+                        @else
+                            <span class="badge bg-success">Payé</span>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -157,32 +172,104 @@
         btnCards.classList.add('active');
         btnList.classList.remove('active');
     });
-</script>
-
+</script> 
 
 <script src="https://cdn.fedapay.com/checkout.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    @foreach($attributions as $attribution)
+    document.addEventListener('DOMContentLoaded', function () {
+        @foreach($attributions as $attribution)
         {
-            let btnElement = document.getElementById('pay-btn-{{ $attribution->id }}');
-            if(btnElement){
-                let montant = parseInt(btnElement.getAttribute('data-montant'));
-                console.log("Montant pour contrat #{{ $attribution->id }}:", montant);
-
+            let btn = document.getElementById('pay-btn-{{ $attribution->id }}');
+            if(btn){
+                let montant = parseInt(btn.getAttribute('data-montant'));
+                let attributionId = btn.getAttribute('data-id');
+    
                 FedaPay.init('#pay-btn-{{ $attribution->id }}', {
                     public_key: 'pk_live_yV2KhV_Yl-pw54zAt4ugq8wb',
                     transaction: {
                         amount: montant,
                         description: 'Paiement du loyer - Contrat #{{ $attribution->id }}'
+                    },
+    
+                    onComplete: function(response) {
+                        if(response.reason === 'CHECKOUT COMPLETE'){
+                            fetch("{{ route('client.paiements.store') }}", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                                },
+                                body: JSON.stringify({
+                                    attribution_id: attributionId,
+                                    montant: montant
+                                })
+                            })
+                            .then(res => res.json())
+                            .then(data => {
+                                if(data.success){
+                                    // Mettre à jour le bouton directement
+                                    if(data.paiements_effectues >= {{ $attribution->mois_total }}){
+                                        btn.outerHTML = '<span class="badge bg-success mt-1">Payé</span>';
+                                    } else {
+                                        btn.textContent = `Payer le loyer (${data.paiements_effectues}/{{ $attribution->mois_total }})`;
+                                    }
+    
+                                    alert("Paiement enregistré avec succès");
+                                }
+                            })
+                            .catch(err => console.error("Erreur fetch:", err));
+                        }
                     }
                 });
             }
         }
-    @endforeach
-});
-</script>
+        @endforeach
+    });
+    </script>
+
+<style>
+    table {
+        min-width: 750px;
+    }
+
+    thead td {
+        padding: 10px;
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: #f9f9f9;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #e9ecef;
+    }
+
+    tbody tr:hover {
+        background-color: rgba(0, 80, 120, 0.6);
+        color: #000;
+        font-weight: bold;
+        cursor: pointer;
+    }
 
 
+    @media (max-width: 768px) {
+    table {
+        font-size: 14px;
+    }
+    thead td, tbody td {
+        padding: 6px 8px;
+    }
+
+    .identifiant {
+        display: none;
+    }
+
+    .action {
+        flex-direction: column;
+       flex: 2;
+    }
+}
+</style>
+    
 
 @endsection

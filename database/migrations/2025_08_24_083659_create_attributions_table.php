@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('bien_id')->constrained('biens')->onDelete('cascade');
             $table->foreignId('client_id')->constrained('users')->onDelete('cascade');
-            $table->date('date_attribution')->default(DB::raw('CURRENT_DATE'));
+            $table->date('date_attribution')->default(now());
             $table->timestamps();
         });
     }

@@ -65,6 +65,7 @@
         <div class="mt-4">
           <h5 class="card-title">{{ $bien->titre }}</h5>
           <p class="card-text">{{ $bien->description }}</p>
+          <p class=""><strong>Catégorie: </strong>{{ $bien->categorie }}</p>
           <p><strong>Adresse :</strong> {{ $bien->adresse }}</p>
           <p><strong>Type :</strong> {{ ucfirst($bien->type) }}</p>
           <p><strong>Prix :</strong> {{ number_format($bien->prix, 2, ',', ' ') }} FCFA</p>

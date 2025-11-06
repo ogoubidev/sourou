@@ -10,8 +10,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 <section class="hero text-center py-5">
-    <h1 class="fw-bold animate__animated animate__fadeInDown">Découvrez nos biens de luxe</h1>
-    <p class="animate__animated animate__fadeInUp">Recherchez et filtrez vos biens pour en savoir plus...</p>
+    <h1 class="fw-bold animate__animated animate__fadeInDown pt-5 mb-0">Découvrez nos biens de luxe</h1>
+    <p class="animate__animated animate__fadeInUp mb-0">Recherchez et filtrez vos biens pour en savoir plus...</p>
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -71,125 +71,151 @@
 
         <div id="contentArea" class="row g-4">
           @forelse($biens as $bien)
-              <div class="col-md-3 col-sm-6 mix {{ $bien->categorie }} animate__animated animate__fadeIn bien-grid" data-title="{{ strtolower($bien->titre) }}">
-                  <div class="card shadow-sm h-100 border-0 rounded-4">
-                      <div class="row g-1 p-2">
-                          @php
-                              $medias = $bien->medias ?? collect();
-                              $mediasPreview = $medias->take(4);
-                          @endphp
-      
-                          @if($bien->image)
-                              <img src="{{ asset('storage/'.$bien->image) }}" 
-                                   class="card-img-top rounded-top" 
-                                   alt="Image du bien" 
-                                   style="height:200px; object-fit:cover; width:100%;">
-                          @elseif($mediasPreview->count() > 0)
-                              @foreach($mediasPreview as $media)
-                                  <div class="col-6">
-                                      @if($media->type === 'image')
-                                          <img src="{{ asset('storage/' . $media->path) }}" 
-                                               class="img-fluid rounded shadow-sm"
-                                               style="height:100px; object-fit:cover; width:100%;">
-                                      @elseif($media->type === 'video')
-                                          <video class="img-fluid rounded shadow-sm" 
-                                                 style="height:100px; object-fit:cover; width:100%;" muted>
-                                              <source src="{{ asset('storage/' . $media->path) }}" type="video/mp4">
-                                          </video>
-                                      @endif
-                                  </div>
-                              @endforeach
-                              @if($medias->count() > 4)
-                                  <div class="col-6 d-flex align-items-center justify-content-center bg-dark text-white rounded" style="height:100px;">
-                                      +{{ $medias->count() - 4 }}
-                                  </div>
-                              @endif
-                          @else
-                              <img src="https://via.placeholder.com/400x250?text=Aucune+image" 
-                                   class="card-img-top rounded-top" 
-                                   alt="Aucune image">
-                          @endif
-                      </div>
+                {{-- Vue CARD --}}
+                <div class="col-md-3 col-sm-6 mix {{ $bien->categorie }} animate__animated animate__fadeIn bien-grid" data-title="{{ strtolower($bien->titre) }}">
+                    <div class="card shadow-sm h-100 border-0 rounded-4">
+                        <div class="row g-1 p-2">
+                            @php
+                                $medias = $bien->medias ?? collect();
+                                $mediasPreview = $medias->take(4);
+                            @endphp
+    
 
-                      <div class="card-body">
-                          <h5 class="card-title">{{ $bien->titre }}</h5>
-                          <p class="card-text text-muted">
-                              <span class="badge bg-info">{{ ucfirst($bien->categorie) }}</span>
-                              <span class="badge bg-secondary">{{ ucfirst($bien->type) }}</span>
-                          </p>
-                          <p class="fw-bold">{{ number_format($bien->prix, 0, ',', ' ') }} FCFA</p>
-                          
-                          @if($bien->statut === 'disponible')
-                            <button 
-                                class="btn btn-custom" 
-                                data-bs-toggle="modal" 
-                                data-bs-target="#louerModal"
-                                onclick="document.querySelector('#louerForm').action='{{ route('client.biens.louer', $bien->id) }}';
-                                        document.querySelector('#modalBienTitre').innerText='{{ $bien->titre }}';">
-                                Louer
+                            @if($bien->image)
+                                <img src="{{ asset('storage/'.$bien->image) }}" 
+                                    class="card-img-top rounded-top" 
+                                    alt="Image du bien" 
+                                    style="height:200px; object-fit:cover; width:100%;">
+                            @elseif($mediasPreview->count() > 0)
+                                @foreach($mediasPreview as $media)
+                                    <div class="col-6">
+                                        @if($media->type === 'image')
+                                            <img src="{{ asset('storage/' . $media->path) }}" 
+                                                class="img-fluid rounded shadow-sm"
+                                                style="height:100px; object-fit:cover; width:100%;">
+                                        @elseif($media->type === 'video')
+                                            <video class="img-fluid rounded shadow-sm" 
+                                                style="height:100px; object-fit:cover; width:100%;" muted>
+                                                <source src="{{ asset('storage/' . $media->path) }}" type="video/mp4">
+                                            </video>
+                                        @endif
+                                    </div>
+                                @endforeach
+                                @if($medias->count() > 4)
+                                    <div class="col-6 d-flex align-items-center justify-content-center bg-dark text-white rounded" style="height:100px;">
+                                        +{{ $medias->count() - 4 }}
+                                    </div>
+                                @endif
+                            @else
+                                <img src="https://via.placeholder.com/400x250?text=Aucune+image" 
+                                    class="card-img-top rounded-top" 
+                                    alt="Aucune image">
+                            @endif
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $bien->titre }}</h5>
+                            <p class="card-text text-muted">
+                                <span class="badge bg-info">{{ ucfirst($bien->categorie) }}</span>
+                                <span class="badge bg-secondary">{{ ucfirst($bien->type) }}</span>
+                            </p>
+                            <p class="fw-bold">{{ number_format($bien->prix, 0, ',', ' ') }} FCFA</p>
+
+                            @php
+                                $lastAttribution = $bien->attributions->last();
+                            @endphp
+
+                            @if($bien->type === 'location')
+                                @php
+                                    $lastAttribution = $bien->attributions->last();
+                                @endphp
+
+                                @if($lastAttribution && $lastAttribution->date_fin->greaterThan(now()))
+                                    <span class="badge bg-danger">
+                                        Déjà loué jusqu’au {{ $lastAttribution->date_fin->format('d/m/Y') }}
+                                    </span>
+                                @else
+                                    <button 
+                                        class="btn btn-custom" 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#louerModal"
+                                        onclick="document.querySelector('#louerForm').action='{{ route('client.biens.louer', $bien->id) }}';
+                                                document.querySelector('#modalBienTitre').innerText='{{ $bien->titre }}';">
+                                        Louer
+                                    </button>
+                                @endif
+                                
+                            @elseif($bien->type === 'vente')
+                                <a href="{{ route('client.biens.acheter', $bien->id) }}" class="btn btn-success">
+                                    Acheter
+                                </a>
+                            @endif
+
+                            {{-- Bouton Voir (toujours visible) --}}
+                            <button class="btn btn-sm btn-custom mt-2" data-bs-toggle="modal" data-bs-target="#bienModal{{ $bien->id }}">
+                                👁 Voir
                             </button>
-                          @else
-                              @if($bien->attributions->last())
-                                  <span class="badge bg-danger">
-                                      Déjà loué jusqu’au {{ $bien->attributions->last()->date_fin->format('d/m/Y') }}
-                                  </span>
-                              @else
-                                  <span class="badge bg-danger">Déjà loué</span>
-                              @endif
-                          @endif
 
-                          <button class="btn btn-sm btn-custom mt-2" data-bs-toggle="modal" data-bs-target="#bienModal{{ $bien->id }}">
-                              👁 Voir
-                          </button>
-                      </div>
-                  </div>
-              </div>
-      
-              {{-- Vue LISTE --}}
-              <div class="col-12 bien-list d-none mix {{ $bien->categorie }} animate__animated animate__fadeIn" data-title="{{ strtolower($bien->titre) }}">
-                  <div class="d-flex justify-content-between align-items-center p-3 mb-3 shadow-sm rounded-4 bg-white">
-                      <div>
-                          <strong>{{ $bien->titre }}</strong><br>
-                          <small class="text-muted">
-                              {{ ucfirst($bien->categorie) }} - {{ ucfirst($bien->type) }}
-                          </small>
-                      </div>
-                      <div class="d-flex align-items-center gap-3">
-                          <span class="fw-bold text-primary">{{ number_format($bien->prix, 0, ',', ' ') }} FCFA</span>
-                          
-                          @if($bien->statut === 'disponible')
-                          <button 
-                                class="btn btn-custom" 
-                                data-bs-toggle="modal" 
-                                data-bs-target="#louerModal"
-                                onclick="document.querySelector('#louerForm').action='{{ route('client.biens.louer', $bien->id) }}';
-                                        document.querySelector('#modalBienTitre').innerText='{{ $bien->titre }}';">
-                                Louer
-                           </button>
-                      
-                          @else
-                              @if($bien->attributions->last())
-                                  <span class="badge bg-danger">
-                                      Déjà loué jusqu’au {{ $bien->attributions->last()->date_fin->format('d/m/Y') }}
-                                  </span>
-                              @else
-                                  <span class="badge bg-danger">Déjà loué</span>
-                              @endif
-                          @endif
+                            <h5>{{ $bien->statut }}</h5>
+                        </div>
+                    </div>
+                </div>
 
-                          <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#bienModal{{ $bien->id }}">
-                              Voir +
-                          </button>
-                      </div>
-                  </div>
-              </div>
+                {{-- Vue LISTE --}}
+                <div class="col-12 bien-list d-none mix {{ $bien->categorie }} animate__animated animate__fadeIn" data-title="{{ strtolower($bien->titre) }}">
+                    <div class="d-flex justify-content-between align-items-center p-3 mb-3 shadow-sm rounded-4 bg-white">
+                        <div>
+                            <strong>{{ $bien->titre }}</strong><br>
+                            <small class="text-muted">
+                                {{ ucfirst($bien->categorie) }} - {{ ucfirst($bien->type) }}
+                            </small>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+
+                            @php
+                                $lastAttribution = $bien->attributions->last();
+                            @endphp
+
+                            @if($bien->type === 'location')
+                                @php
+                                    $lastAttribution = $bien->attributions->last();
+                                @endphp
+
+                                @if($lastAttribution && $lastAttribution->date_fin->greaterThan(now()))
+                                    <span class="badge bg-danger">
+                                        Loué jusqu’au {{ $lastAttribution->date_fin->format('d/m/Y') }}
+                                    </span>
+                                @else
+                                    <button 
+                                        class="btn btn-custom" 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#louerModal"
+                                        onclick="document.querySelector('#louerForm').action='{{ route('client.biens.louer', $bien->id) }}';
+                                                document.querySelector('#modalBienTitre').innerText='{{ $bien->titre }}';">
+                                        Louer
+                                    </button>
+                                @endif
+
+                            @elseif($bien->type === 'vente')
+                                <a href="{{ route('client.biens.acheter', $bien->id) }}" class="btn btn-success">
+                                    Acheter
+                                </a>
+                            @endif
+
+                            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#bienModal{{ $bien->id }}">
+                                Voir +
+                            </button>
+                        </div>
+                    </div>
+                </div>
           @empty
               <div class="col-12 text-center">
                 <img src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png" alt="Aucun article" class="empty-img">
                 <p class="text-muted">Aucun bien disponible.</p>
               </div>
           @endforelse
-      </div>
+        </div>
     </div>
 </section>
 
@@ -233,26 +259,51 @@
 
 
 <script>
-    // Filtrage par catégorie
-    const filterButtons = document.querySelectorAll('#filterTabs button');
-    const items = document.querySelectorAll('#contentArea .mix');
+// Filtrage par catégorie
+const filterButtons = document.querySelectorAll('#filterTabs button');
+const items = document.querySelectorAll('#contentArea .mix');
+const contentArea = document.querySelector('#contentArea');
 
-    filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+// Création du bloc "aucun résultat"
+const emptyDiv = document.createElement('div');
+emptyDiv.classList.add('col-12', 'text-center');
+emptyDiv.innerHTML = `
+    <img src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png" 
+         alt="Aucun article" class="empty-img">
+    <p class="text-muted">Aucun bien disponible.</p>
+`;
 
-            const target = btn.getAttribute('data-target');
-            items.forEach(item => {
-                if(target === 'tout' || item.classList.contains(target)){
-                    item.style.display = '';
-                    item.classList.add('animate__fadeIn');
-                } else {
-                    item.style.display = 'none';
-                }
-            });
+filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const target = btn.getAttribute('data-target');
+        let visibleCount = 0;
+
+        items.forEach(item => {
+            if (target === 'tout' || item.classList.contains(target)) {
+                item.style.display = '';
+                item.classList.add('animate__fadeIn');
+                visibleCount++;
+            } else {
+                item.style.display = 'none';
+            }
         });
+
+        // Gestion du message "aucun bien"
+        if (visibleCount === 0) {
+            if (!contentArea.contains(emptyDiv)) {
+                contentArea.appendChild(emptyDiv);
+            }
+        } else {
+            if (contentArea.contains(emptyDiv)) {
+                contentArea.removeChild(emptyDiv);
+            }
+        }
     });
+});
+
 
     // Recherche par titre
     const searchInput = document.getElementById('searchInput');

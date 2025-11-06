@@ -10,7 +10,16 @@ class Bien extends Model
     use HasFactory;
 
     protected $fillable = [
-        'titre', 'description', 'adresse', 'prix', 'type', 'statut', 'image', 'categorie', 'proprietaire_id'
+        'titre',
+        'description',
+        'adresse',
+        'prix',
+        'type',        // vente ou location
+        'statut',      // disponible / attribué
+        'image',
+        'categorie',   // maisons, appartements, terrain, vehicules, mobilier
+        'etat',        // baties, inachevees, meuble, non_meuble
+        'proprietaire_id'
     ];
 
     // 🔹 Chaque bien appartient à un propriétaire
@@ -35,7 +44,4 @@ class Bien extends Model
     {
         return $this->hasMany(Location::class);
     }
-    
-
 }
-

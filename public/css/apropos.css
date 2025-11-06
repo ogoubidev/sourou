@@ -224,7 +224,8 @@
   }
   .paragraphe{
     color:var(--ink);line-height:1.7;font-size:15px;
-    text-align:justify;margin:0 0 14px;
+    text-align:justify;
+    margin:0 0 8px;
   }
   .paragraphe strong{color:var(--brand);}
 

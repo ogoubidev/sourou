@@ -136,8 +136,24 @@
           <i class="bi bi-file-earmark-text"></i> <span>Mes contrats</span>
       </a>
 
-      <a href="{{ route('client.paiements') }}" class="{{ request()->routeIs('client.paiements') ? 'active' : '' }}">
-          <i class="bi bi-currency-dollar"></i> <span>Historique des paiements</span>
+      <a href="{{ route('client.achats') }}" class="{{ request()->routeIs('client.achats') ? 'active' : '' }}">
+        <i class="bi bi-cart"></i> <span>Mes achats</span>
+      </a>
+
+      <a href="{{route('client.contrats_payes.historique') }}" class="{{ request()->routeIs('client.contrats_payes.historique') ? 'active' : '' }}">
+          <i class="bi bi-currency-dollar"></i> <span>Payés</span>
+      </a>
+
+      <a href="{{route('conversations.index') }}" class="{{ request()->routeIs('conversations.index') ? 'active' : '' }}">
+        <i class="bi bi-chat-dots"></i><span>Messages</span>
+      </a>
+
+      <a href="{{route('client.signalements.index') }}" class="{{ request()->routeIs('client.signalements.index') ? 'active' : '' }}">
+        <i class="bi bi-flag-fill"></i><span>Signaler</span>
+      </a>
+
+      <a href="{{route('parametres.index') }}" class="{{ request()->routeIs('parametres.index') ? 'active' : '' }}">
+        <i class="bi bi-gear"></i><span>Paramètres</span>
       </a>
 
       <a href="{{ url('/accueil') }}">
@@ -156,13 +172,14 @@
 
     <!-- Navbar -->
     <nav class="navbar p-3 justify-content-between">
-        <span><i class="bi bi-person-circle"></i> Client connecté </span>
-        <div class="d-flex align-items-center gap-3">
+        <div class="d-flex mb-2">
+            <span><i class="bi bi-person-circle"></i> Client connecté: {{ $client->name." ".$client->surname}} </span>
+        </div>
 
+        <div class="gap-4 d-flex">
             <a href="{{ url('/catalogue') }}" class="btn btn-sm btn-outline-warning">
                 Visiter le catalogue
             </a>
-
             @include('partials.notifications-bell')
         </div>
     </nav>

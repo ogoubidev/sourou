@@ -19,7 +19,7 @@ class LoyerMensuel extends Notification
 
     public function via($notifiable)
     {
-        return ['mail']; // ou ['database','mail'] si tu veux en DB aussi
+        return ['mail', 'database'];
     }
 
     public function toMail($notifiable)
@@ -31,5 +31,16 @@ class LoyerMensuel extends Notification
                     ->line('Montant à payer : '.number_format($this->attribution->loyer_mensuel, 0, ',', ' ').' FCFA')
                     ->line('Date de début de contrat : '.$this->attribution->date_debut->format('d/m/Y'))
                     ->line('Merci de vérifier et de procéder au paiement.');
+    }
+
+    public function toDatabase($notifiable)
+    {
+        return [
+            'attribution_id' => $this->attribution->id,
+            'bien'           => $this->attribution->bien->titre,
+            'montant'        => $this->attribution->loyer_mensuel,
+            'date_debut'     => $this->attribution->date_debut,
+            'message'        => "Rappel : paiement du loyer du bien « {$this->attribution->bien->titre} » ({$this->attribution->loyer_mensuel} FCFA).",
+        ];
     }
 }

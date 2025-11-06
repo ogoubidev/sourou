@@ -99,6 +99,22 @@ return [
         ],
     ],
 
+
+
+    'passwords' => [
+        'users' => [
+            'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+    
+        'proprietaires' => [
+            'provider' => 'proprietaires',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+    ],    
+
     /*
     |--------------------------------------------------------------------------
     | Password Confirmation Timeout

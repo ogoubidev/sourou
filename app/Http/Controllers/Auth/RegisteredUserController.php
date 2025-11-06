@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Validation\Rule;
 
 class RegisteredUserController extends Controller
 {
@@ -33,10 +34,19 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
-            'email' => ['string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'telephone' => ['required', 'digits:10', 'unique:users,telephone'],
+            'email' => ['nullable', 'string', 'lowercase', 'email', 'max:255', Rule::unique('users')->ignore($user->id ?? null)],
+            'telephone' => ['required', 'unique:users,telephone'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'profil' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
         ]);
+
+        
+        // Gestion du fichier profil
+        $profilPath = null;
+        if ($request->hasFile('profil')) {
+            $profilPath = $request->file('profil')->store('profils', 'public');
+        }
+
 
         $user = User::create([
             'name' => $request->name,
@@ -44,12 +54,13 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'telephone' => $request->telephone,
+            'profil' => $profilPath,
         ]);        
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+         return redirect(RouteServiceProvider::HOME);
     }
 }

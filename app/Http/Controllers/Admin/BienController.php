@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attribution;
 use App\Models\Bien;
 use App\Models\BienMedia;
 use App\Models\User;
@@ -15,6 +16,9 @@ class BienController extends Controller
 {
     public function index()
     {
+
+        $this->synchroniserBiens();
+
         $biens = Bien::with(['proprietaire','attributions','medias'])->latest()->get();
         $proprietaires = User::where('role','proprietaire')->orderBy('name')->get();
 
@@ -30,10 +34,11 @@ class BienController extends Controller
             'adresse' => 'required|string|max:255',
             'prix' => 'required|numeric|min:0',
             'type' => 'required|in:vente,location',
-            'categorie' => 'required|in:maisons,parcelles,vehicules,mobilier',
+            'etat' => 'required|string|max:255',
+            'categorie' => 'required|in:maisons,appartements,parcelles,vehicules,mobilier',
             'proprietaire_id' => 'required|exists:users,id',
             'medias.*' => 'nullable|mimes:jpg,jpeg,png,gif,mp4,mov,avi|max:20000', // 20MB max
-        ]);
+        ]); 
         
 
         $bien = Bien::create($data);
@@ -66,6 +71,7 @@ class BienController extends Controller
             'prix' => 'required|numeric|min:0',
             'type' => 'required|in:vente,location',
             'categorie' => 'required|in:maisons,parcelles,vehicules,mobilier',
+            'etat' => 'required|string|max:255',
             'proprietaire_id' => 'required|exists:users,id',
             'medias.*' => 'nullable|mimes:jpg,jpeg,png,gif,mp4,mov,avi|max:20000', // 20MB max
         ]);
@@ -106,18 +112,30 @@ class BienController extends Controller
         return redirect()->route('admin.biens.index')->with('success', 'Bien supprimé.');
     }
 
+    public function louer(Request $request, Bien $bien)
+    {
+        if ($bien->statut === 'disponible') {
+            $bien->statut = 'attribue';
+            $bien->date_fin = now()->addMonths(6);
+            $bien->save();
 
-        public function louer(Request $request, Bien $bien)
-        {
-            if ($bien->statut === 'disponible') {
-                // Exemple : attribuer automatiquement une date de fin + changer statut
-                $bien->statut = 'attribue';
-                $bien->date_fin = now()->addMonths(6); // durée fictive (6 mois)
-                $bien->save();
-
-                return redirect()->back()->with('success', 'Le bien a été loué avec succès');
-            }
-
-            return redirect()->back()->with('error', 'Ce bien est déjà loué');
+            return redirect()->back()->with('success', 'Le bien a été loué avec succès');
         }
+
+        return redirect()->back()->with('error', 'Ce bien est déjà loué');
+    }
+
+    private function synchroniserBiens()
+    {
+        $biens = Bien::with('attributions')->get();
+
+        foreach ($biens as $bien) {
+            $lastAtt = $bien->attributions->last();
+
+            if ($lastAtt && $lastAtt->date_fin < now() && $bien->statut === 'attribue') {
+                $lastAtt->update(['status' => 'terminee']);
+                $bien->update(['statut' => 'disponible']);
+            }
+        }
+    }
 }

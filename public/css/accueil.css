@@ -39,6 +39,7 @@ transition: all 0.4s ease-in-out;
 position: relative;
 }
 
+
 .icon-wrapper{
 width: 50px;
 height: 50px;
@@ -754,7 +755,6 @@ box-shadow: 0 12px 30px 30px rgba(0,0,0,0.8);
 
   /* Carroussel */
   .carousel-item img {
-    margin-top: 15px;
     width: 100%;
     height: 90vh; 
     object-fit: cover;
@@ -875,65 +875,19 @@ box-shadow: 0 12px 30px 30px rgba(0,0,0,0.8);
     .carousel-indicators {
       bottom: 10px;
     }
+
+    #carouselCustom {
+      margin-top: 500px;
+    }
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  @media (max-width: 767.98px) {
+    #carouselCustom {
+      margin-top: 200px; 
+    }
+  }
+  
 
 
 
@@ -1049,3 +1003,252 @@ section.carousel-apple {
   background: #fff;
 }
 
+
+.text-custom {
+  color: rgba(0, 80, 120, 0.7);
+  font-weight: 500;                         
+  transition: color 0.3s ease;             
+}
+
+.text-custom:hover,
+.text-custom:focus { 
+  color: rgba(0, 80, 120, 1);
+}
+
+
+/* ===== Section Services ===== */
+.services-principaux {
+  background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 80, 120, 0.08);
+  transition: transform 0.5s ease, box-shadow 0.4s ease;
+  transform: translateY(30px);
+  opacity: 0;
+  animation: fadeUp 1s forwards;
+}
+
+.service-card img {
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.service-card .card-body {
+  padding: 1.5rem;
+}
+
+.service-card ul li {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: #444;
+  transition: color 0.3s;
+}
+
+.service-card ul li:hover {
+  color: #0074a6;
+}
+
+/* Animation d’apparition */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Effet survol chic */
+.service-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 90, 140, 0.15);
+}
+
+.service-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Animation d’apparition progressive */
+.service-card:nth-child(1) { animation-delay: 0.2s; }
+.service-card:nth-child(2) { animation-delay: 0.4s; }
+.service-card:nth-child(3) { animation-delay: 0.6s; }
+
+/* 🫧 Effet d’arrière-plan léger */
+.services-principaux::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0,120,200,0.1), transparent 70%);
+  animation: floatLight 10s infinite ease-in-out alternate;
+}
+@keyframes floatLight {
+  from { transform: translate(0, 0); }
+  to { transform: translate(60px, 40px); }
+}
+
+
+
+
+/* Cartes */
+.service-principaux-card {
+  border: none;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+.service-principaux-card img {
+  display: block;
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  margin: 0;
+  border-bottom: 3px solid #00507820;
+  transition: transform 0.8s ease, filter 0.4s ease;
+}
+
+/* Supprimer tout espace fantôme */
+.card-img-top {
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* Animation de survol */
+.service-principaux-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0, 80, 120, 0.15);
+}
+.service-principaux-card:hover img {
+  transform: scale(1.08);
+  filter: brightness(1.05);
+}
+
+/* Apparition fluide */
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.service-principaux-card {
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
+}
+.service-principaux-card:nth-child(1) { animation-delay: 0.2s; }
+.service-principaux-card:nth-child(2) { animation-delay: 0.4s; }
+.service-principaux-card:nth-child(3) { animation-delay: 0.6s; }
+
+/* Petites touches */
+.service-principaux-card .card-body h5 {
+  letter-spacing: 0.5px;
+}
+.service-principaux-card .list-group-item {
+  border: none;
+  background: transparent;
+}
+.service-principaux-card .list-group-item p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.text-custom {
+  color: #005078;
+}
+
+
+/* ====== FLIP CARD 3D ====== */
+.flip-card {
+  background-color: transparent;
+  perspective: 1000px; /* profondeur 3D */
+  border-radius: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  height: 400px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s ease, box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner,
+.flip-card:active .flip-card-inner {
+  transform: rotateY(180deg);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* Face avant */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* cache la face non visible */
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+/* Face avant */
+.flip-card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.6s ease;
+}
+.flip-card-front:hover img {
+  filter: brightness(0.85);
+}
+
+/* Face arrière */
+.flip-card-back {
+  background: linear-gradient(135deg, #004080, #0074a6);
+  color: #fff;
+  transform: rotateY(180deg);
+  padding: 2rem;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.flip-card:hover .flip-card-back,
+.flip-card:active .flip-card-back {
+  opacity: 1;
+}
+
+/* Bouton */
+.flip-card-back .btn {
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+.flip-card-back .btn:hover {
+  background: #ffd700;
+  color: #004060;
+  transform: scale(1.08);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .flip-card {
+    height: 320px;
+  }
+  .flip-card-back p {
+    font-size: 0.9rem;
+  }
+}

@@ -63,7 +63,9 @@ class AttributionCreee extends Notification implements ShouldQueue
             'message'        => "Nouvelle attribution du bien « " 
                                 . $this->attribution->bien->titre 
                                 . " » au client " 
-                                . $this->attribution->client->name,
+                                . $this->attribution->client->name 
+                                . ' '
+                                . $this->attribution->client->surname
         ];
     }
 }

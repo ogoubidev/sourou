@@ -17,12 +17,11 @@
         <div class="card-header bg-primary text-white">Utilisateurs récents</div>
         <div class="card-body">
             @if($users->count() > 0)
-                <table>
-                    <thead>
+                <table class="table table-hover table-sm table-middle">
+                    <thead class="table-primary">
                         <tr class="justify-content-between">
                             <td><strong>Nom</strong></td>
                             <td><strong>Prénom</strong></td>
-                            <td><strong>Email</strong></td>
                             <td><strong>Téléphone</strong></td>
                             <td><strong>Role</strong></td>
                         </tr>
@@ -32,7 +31,6 @@
                         <tr class="justify-content-between">
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->surname }}</td>
-                            <td>{{ $user->email }}</td>
                             <td>{{ $user->telephone }}</td>
                             <td>{{ $user->role }}</td>
                         </tr>

@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('locations', function (Blueprint $table) {
-            $table->enum('statut', ['en_attente_paiement', 'payee', 'annulee'])->default('en_attente');
+            $table->enum('statut', ['en_attente_paiement', 'payee', 'annulee'])
+      ->default('en_attente_paiement') // ← CORRIGÉ : valeur qui existe dans l'énumération
+      ->notnull();
         });
     }
 

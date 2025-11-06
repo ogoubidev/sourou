@@ -1,279 +1,620 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Icône de l’entreprise -->
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/logotype sourou bleu_Plan de travail 1.png') }}">
-    <title>Sourou Immobillier</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sourou Immobilier</title>
+  <link rel="icon" type="image/png" href="{{ asset('assets/images/logotype sourou bleu_Plan de travail 1.png') }}">
 
-      <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-     
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <!-- Bootstrap + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-      <!-- AOS Animations -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <style>
-    /* Navbar */
-    .custom-primary {
-      background: linear-gradient(135deg, #004060, #005078);
-      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+    :root {
+      --main-blue: #005078;
+      --gold: #ffc107;
+      --light-bg: #f5f5f5;
     }
 
-    .navbar-nav .nav-link {
+    body {
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* === TOPBAR === */
+    .topbar {
+      background: var(--light-bg);
+      color: #333;
+      font-size: 14px;
+      z-index: 1040;
       position: relative;
+    }
+
+    .topbar i {
+      color: var(--main-blue);
+    }
+
+    /* === NAVBAR === */
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: white;
+      transition: all 0.3s ease-in-out;
+      z-index: 1050;
+    }
+
+    .navbar-brand h6, .navbar-brand small {
+      color: var(--main-blue);
+    }
+
+    .nav-link {
+      color: var(--main-blue) !important;
       font-weight: 500;
-      color: #fff;
-      padding: 6px 12px;
+      position: relative;
       transition: color 0.3s ease;
     }
 
-    .navbar-nav .nav-link::before,
-    .navbar-nav .nav-link::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: #00c4ff;
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
+    .nav-link:hover, .nav-link.active {
+      color: var(--gold) !important;
     }
 
-    /* Lignes visibles sur actif */
-    .navbar-nav .nav-link.active::before,
-    .navbar-nav .nav-link.active::after {
-      transform: scaleX(1);
-      transform-origin: center;
+    .navbar.scrolled {
+      background: var(--main-blue) !important;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
 
-    /* Hover animation */
-    .navbar-nav .nav-link:hover::before {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-    .navbar-nav .nav-link:hover::after {
-      transform: scaleX(1);
-      transform-origin: right;
+    .navbar.scrolled .nav-link {
+      color: white !important;
     }
 
-    /* Input recherche */
-    .search-wrapper {
-      position: relative;
-      width: 200px;
-      transition: width 0.3s ease;
+    .navbar.scrolled .navbar-brand h6,
+    .navbar.scrolled .navbar-brand small {
+      color: white !important;
     }
-    .search-wrapper:focus-within {
-      width: 260px;
-    }
-    .search-bar {
-      height: 36px;
-      width: 100%;
-      padding-left: 14px;
-      font-size: 0.85rem;
-      border-radius: 1.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      background: rgba(255, 255, 255, 0.15);
-      color: #fff;
-      outline: none;
-      transition: all 0.3s ease-in-out;
-    }
-    .search-bar::placeholder {
-      color: rgba(255, 255, 255, 0.7);
-    }
-    .search-bar:focus {
-      background: rgba(255, 255, 255, 0.25);
-      border-color: #fff;
-      box-shadow: 0 0 8px rgba(0, 196, 255, 0.6);
-    }
-    .search-btn {
-      position: absolute;
-      right: 3px;
-      top: 0;
+
+    /* Dropdown hover */
+    .dropdown-menu {
+      border-radius: 10px;
       border: none;
-      border-radius: 50%;
-      padding: 6px;
-      cursor: pointer;
-      transition: background 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      display: none;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown:hover > .dropdown-menu {
+      display: block;
+      opacity: 1;
+    }
+
+    .dropdown-item:hover {
+      background-color: #e6f2f8;
+      color: var(--main-blue);
+    }
+
+    /* Sous-menus */
+    .dropdown-submenu {
+      position: relative;
+    }
+
+    .dropdown-submenu:hover .dropdown-menu {
+      top: 0;
+      left: 100%;
+      margin-left: 0.2rem;
+      display: block;
+      opacity: 1;
+      color: #005078;
+    }
+
+    /* === DROPDOWN DANS LA SIDEBAR MOBILE === */
+    .mobile-sidebar .dropdown-menu {
+      background-color: #005078; /* fond semi-transparent blanc */
+      border-radius: 8px;
+      margin-left: 15px;
+      padding: 5px 0;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-sidebar .dropdown-item {
+      color: #fff;
+      font-weight: 500;
+      padding-left: 30px;
+    }
+
+    .mobile-sidebar .dropdown-item:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+      color: #0dcaf0;
+    }
+
+    /* Couleur de fond des sous-menus */
+    .dropdown-menu {
+      background-color: #005078 !important;
+    }
+
+    .dropdown-menu .dropdown-item {
+      color: #fff !important;
+    }
+
+    .dropdown-menu .dropdown-item:hover {
+      background-color: #0dcaf0 !important;
+      color: #005078 !important;
+    }
+
+    /* Pour les sous-niveaux */
+    .dropdown-submenu .dropdown-menu {
+      background-color: #005078 !important;
+    }
+
+    .topbar {
+      background-color: #005078;
+      color: white;
+      font-size: 0.9rem;
+      overflow: hidden;
+    }
+
+    /* Animation du haut-parleur */
+    .speaker-icon {
+      animation: pulse 1.2s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.3); color: #0dcaf0; }
+    }
+
+    /* Texte publicitaire défilant */
+    .pub-text {
+      white-space: nowrap;
+      overflow: hidden;
+      position: relative;
+      width: 250px;
+    }
+
+    .pub-text span {
+      display: inline-block;
+      position: absolute;
+      animation: slideText 12s linear infinite;
+    }
+
+    @keyframes slideText {
+      0% { left: 100%; }
+      100% { left: -100%; }
+    }
+
+    /* Responsive */
+    @media (max-width: 576px) {
+      .pub-text { width: 150px; font-size: 0.8rem; }
+      .speaker-icon { font-size: 1.2rem; }
+    }
+
+    .topbar {
+      background-color: #005078;
+      color: white;
+      font-size: 0.9rem;
+    }
+
+    /* Animation du haut-parleur */
+    .speaker-icon {
+      animation: pulse 1.2s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.3); color: #0dcaf0; }
+    }
+
+    /* Texte publicitaire défilant */
+    .pub-text span {
+      display: inline-block;
+      position: absolute;
+      white-space: nowrap;
+      animation: slideText 8s linear forwards;
+    }
+
+    @keyframes slideText {
+      0% { left: 100%; }
+      100% { left: -100%; }
+    }
+
+    @media (max-width: 576px) {
+      .pub-text { width: 150px; font-size: 0.8rem; }
+      .speaker-icon { font-size: 1.2rem; }
     }
 
 
-      /* footer */
+    .topbar {
+      position: static;
+    }
 
-      html, body {
-        height: 100%;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-      }
 
-      main {
-        flex: 1;
-      }
 
-      footer {
-        color: white;
-        text-align: center;
-        padding: 10px;
-      }
+    /* === SEARCH OVERLAY === */
+    .search-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 80, 120, 0.95);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      animation: fadeIn 0.4s ease;
+    }
 
-      /* Contact en z-index */
+    .search-overlay.active {
+      display: flex;
+    }
 
-      .contact-widget {
-        position: fixed;
-        bottom: 20%;
-        right: 20px;
-        z-index: 9999;
-      }
+    .search-form {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      background: white;
+      padding: 12px 20px;
+      border-radius: 50px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      width: 70%;
+      max-width: 600px;
+    }
 
-      .contact-btn {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        border: none;
-        background: #005078;
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        transition: transform 0.3s ease;
-      }
+    .search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 1.1rem;
+    }
 
-      .contact-btn:hover {
-        transform: scale(1.1);
-      }
+    .search-submit {
+      border: none;
+      background: var(--main-blue);
+      color: white;
+      border-radius: 50%;
+      width: 42px; height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-      /* Options cachées par défaut */
-      .contact-option {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: #fff;
-        color: #005078;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        pointer-events: none;
-        transition: all 0.4s ease;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      }
+    .close-search {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+    }
 
-      /* Directions */
-      .contact-top   { transform: translateY(0); }
-      .contact-bottom{ transform: translateY(0); }
-      .contact-left  { transform: translateX(0); }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(1.05); }
+      to { opacity: 1; transform: scale(1); }
+    }
 
-      /* Actif (après clic) */
-      .contact-widget.active .contact-top {
-        transform: translateY(-80px);
-        opacity: 1; pointer-events: auto;
-      }
+    /* === MOBILE SIDEBAR === */
+    .mobile-sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: var(--main-blue);
+      color: white;
+      transform: translateX(-100%);
+      transition: all 0.4s ease;
+      z-index: 1500;
+      padding-top: 90px;
+      overflow-y: auto;
+    }
 
-      .contact-widget.active .contact-bottom {
-        transform: translateY(80px);
-        opacity: 1; pointer-events: auto;
-      }
+    .mobile-sidebar.active {
+      transform: translateX(0);
+    }
 
-      .contact-widget.active .contact-left {
-        transform: translateX(-80px);
-        opacity: 1; pointer-events: auto;
-      }
+    .mobile-sidebar a {
+      color: white;
+      display: block;
+      padding: 12px 20px;
+      transition: background 0.3s;
+    }
 
+    .mobile-sidebar a:hover {
+      background: rgba(255,255,255,0.15);
+    }
+
+    .mobile-sidebar .dropdown-menu {
+      background: rgba(255,255,255,0.1);
+      display: none;
+      padding-left: 15px;
+    }
+
+    .mobile-sidebar .dropdown.open > .dropdown-menu {
+      display: block;
+    }
+
+    .sidebar-close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* === FOOTER === */
+    footer {
+      background: var(--main-blue);
+      color: white;
+      padding-top: 50px;
+    }
+
+    footer a {
+      color: #ddd;
+    }
+
+    footer a:hover {
+      color: white;
+    }
   </style>
 </head>
+
 <body>
-  <header>
-    <nav class="navbar navbar-expand-lg fixed-top custom-primary shadow-sm py-2">
-      <div class="container-fluid">
-        
-        <!-- Logo + Nom -->
-        <a class="navbar-brand d-flex align-items-center text-light fw-bold" href="#">
-          <img src="{{ asset('assets/images/logotype sourou bleu_Plan de travail 1.png') }}" 
-               alt="Logo" class="border border-3 border-light rounded-circle me-2" 
-               style="width: 50px; height: 50px;">
-          <div class="lh-1">
-            <h6 class="mb-0">SOUROU</h6>
-            <small>IMMOBILIER</small>
-          </div>
-        </a>
 
-        <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-          <i class="bi bi-list fs-2"></i>
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-          <ul class="navbar-nav mx-auto text-center gap-3">
-            <li class="nav-item">
-              <a class="nav-link text-light {{ request()->is('accueil') ? 'active' : '' }}" href="/accueil">Accueil</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-light {{ request()->is('apropos') ? 'active' : '' }}" href="/apropos">A Propos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-light {{ request()->is('catalogue') ? 'active' : '' }}" href="/catalogue">Catalogue</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-light {{ request()->is('contact') ? 'active' : '' }}" href="/contact">Contact</a>
-            </li>
-          </ul>
-        </div>
-
-      
-
-        <div class="d-flex align-items-center gap-2">
-          <form action="{{ route('catalogue') }}" method="get" class="d-flex align-items-center">
-            <div class="search-wrapper">
-              <input type="text" name="query" class="search-bar" placeholder="Rechercher un bien..." value="{{ request('query') }}">
-              <button type="submit" class="btn search-btn">
-                <h5><i class="bi bi-search text-info"></i></h5>
-              </button>
-            </div>
-          </form>          
-          <form action="{{ route('register') }}" method="get">
-            <button class="btn btn-sm btn-outline-info rounded-3 px-3">S'inscrire</button>
-          </form>
-        </div>
+  <!-- === TOPBAR === -->
+  <div class="topbar py-2 px-3 d-flex justify-content-between align-items-center flex-wrap">
+    <div class="d-flex align-items-center gap-2 position-relative">
+      <i class="bi bi-megaphone-fill text-info fs-4 speaker-icon"></i>
+      <div class="pub-text text-light position-relative overflow-hidden" style="width: 250px; height: 1.2rem;">
+        <!-- Les messages défilants seront injectés ici par JS -->
       </div>
-    </nav>
-  </header>
+    </div>
+
+    <div class="d-flex align-items-center gap-3 mt-2 mt-sm-0">
+      @auth
+          @php
+              $role = Auth::user()->role ?? 'client';
+          @endphp
+  
+          @if($role === 'admin')
+              <span class="text-light small"> Bonjour Admin, {{ Auth::user()->name }}</span>
+          @elseif($role === 'proprietaire')
+              <span class="text-light small"> Bonjour Propriétaire, {{ Auth::user()->name }}</span>
+          @else
+              <span class="text-light small"> Bonjour, {{ Auth::user()->name }}</span>
+          @endif
+  
+          <form action="{{ route('logout') }}" method="POST" class="d-inline">
+              @csrf
+              <button type="submit" class="btn btn-sm btn-outline-light">Déconnexion</button>
+          </form>
+      @else
+          <a href="{{ route('login') }}" class="btn btn-sm btn-outline-light">Se connecter</a>
+          <a href="{{ route('register') }}" class="btn btn-sm btn-warning text-dark">S’inscrire</a>
+      @endauth
+    </div>
   
 
-  <main class="py-4">
-    @yield('content')
-  </main>
-
-    <!-- Bouton flottant de contact -->
-  <div class="contact-widget">
-      <button id="contactToggle" class="contact-btn">
-        <i class="bi bi-chat-dots"></i>
-      </button>
-
-    <!-- Options de contact -->
-    <a href="tel:+2290196233121" class="contact-option contact-top" title="Appel">
-      <i class="bi bi-telephone-fill"></i>
-    </a>
-    <a href="https://www.facebook.com/" target="_blank" class="contact-option contact-bottom" title="Facebook">
-      <i class="bi bi-facebook"></i>
-    </a>
-    <a href="https://wa.me/2290196233121" target="_blank" class="contact-option contact-left" title="WhatsApp">
-      <i class="bi bi-whatsapp"></i>
-    </a>
   </div>
 
+  <nav class="navbar navbar-expand-lg shadow-sm">
+    <div class="container-fluid px-4">
+      <!-- Logo -->
+      <a class="navbar-brand d-flex align-items-center fw-bold" href="/">
+        <img src="{{ asset('assets/images/logotype sourou bleu_Plan de travail 1.png') }}"
+             alt="Logo" class="border border-3 border-light rounded-circle me-2"
+             style="width: 48px; height: 48px;">
+        <div class="lh-1">
+          <h6 class="mb-0">SOUROU</h6>
+          <small>IMMOBILIER</small>
+        </div>
+      </a>
 
+      <!-- Burger -->
+      <button id="burgerMenu" class="navbar-toggler border-0 text-dark" type="button">
+        <i class="bi bi-list fs-2"></i>
+      </button>
 
+      <!-- Liens -->
+      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto text-center gap-3">
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('accueil') ? 'active' : '' }}" href="/accueil">Accueil</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link {{ request()->is('apropos') ? 'active' : '' }}" href="/apropos">A Propos</a>
+          </li>
 
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('nos-services') ? 'active' : '' }}" href="/nos-services">Nos services</a>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle {{ request('type') === 'vente' ? 'active' : '' }}" 
+               href="#" id="navbarDropdownVente" role="button" data-bs-toggle="dropdown" 
+               aria-expanded="false">
+                Propriété à vendre
+            </a>
+        
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownVente">
+                <!-- Sous-menu Maison à vendre -->
+                <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle" href="#">
+                        Maison à vendre
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/catalogue?categorie=maisons&type=vente&etat=batie">Maisons bâties</a></li>
+                        <li><a class="dropdown-item" href="/catalogue?categorie=maisons&type=vente&etat=inachevee">Maisons inachevées</a></li>
+                    </ul>
+                </li>
+        
+                <li><a class="dropdown-item" href="/catalogue?categorie=parcelles&type=vente">Terrain à vendre</a></li>
+        
+                <!-- Sous-menu Appartement à vendre -->
+                <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle" href="#">
+                        Appartement à vendre
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/catalogue?categorie=appartements&type=vente&etat=meuble">Meublé</a></li>
+                        <li><a class="dropdown-item" href="/catalogue?categorie=appartements&type=vente&etat=non_meuble">Non meublé</a></li>
+                    </ul>
+                </li>
+            </ul>
+          </li>
+          
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle {{ request('type') === 'location' ? 'active' : '' }}"
+                href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Propriété à louer
+              </a>
+          
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <!-- Sous-menu Appartement -->
+                  <li class="dropdown-submenu">
+                      <a class="dropdown-item dropdown-toggle" href="#">
+                          Appartement à louer
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="/catalogue?categorie=appartements&type=location&etat=meuble">Meublé</a></li>
+                          <li><a class="dropdown-item" href="/catalogue?categorie=appartements&type=location&etat=non_meuble">Non meublé</a></li>
+                      </ul>
+                  </li>
+          
+                  <!-- Sous-menu Maison -->
+                  <li class="dropdown-submenu">
+                      <a class="dropdown-item dropdown-toggle" href="#">
+                          Maison à louer
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="/catalogue?categorie=maisons&type=location&etat=meuble">Meublée</a></li>
+                          <li><a class="dropdown-item" href="/catalogue?categorie=maisons&type=location&etat=non_meuble">Non meublée</a></li>
+                      </ul>
+                  </li>
+          
+                  <li>
+                      <a class="dropdown-item" href="/catalogue?categorie=parcelles&type=location">Terrain à louer</a>
+                  </li>
+              </ul>
+          </li>
+        
+
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('gestion-locative') ? 'active' : '' }}" href="gestion-locative">Gestion locative</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('actualite') ? 'active' : '' }}" href="/actualite">Blog</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('nos-partenaire') ? 'active' : '' }}" href="/nos-partenaire">Partenaires</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('faq') ? 'active' : '' }}" href="/faq">FAQ</a>
+          </li>
+          
+     
+          <li class="nav-item">
+              <a class="nav-link {{ request()->is('contact') ? 'active' : '' }}" href="/contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- === OVERLAY RECHERCHE === -->
+  <div id="searchOverlay" class="search-overlay">
+    <button class="close-search"><i class="bi bi-x-lg"></i></button>
+    <form action="{{ route('catalogue') }}" method="get" class="search-form">
+      <input type="text" name="query" class="search-input" placeholder="Rechercher un bien...">
+      <button type="submit" class="search-submit"><i class="bi bi-search"></i></button>
+    </form>
+  </div>
+
+  <div id="mobileSidebar" class="mobile-sidebar">
+    <i class="bi bi-x sidebar-close"></i>
+  
+    <a href="/accueil"><i class="bi bi-house me-2"></i>Accueil</a>
+    <a href="/apropos"><i class="bi bi-info-circle me-2"></i>À propos</a>
+    <a href="/nos-services"><i class="bi bi-briefcase me-2"></i>Nos services</a>
+  
+    <!-- Propriétés à vendre -->
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle"><i class="bi bi-building me-2"></i>Propriétés à vendre</a>
+      <div class="dropdown-menu">
+        <!-- Maison -->
+        <div class="dropdown-submenu">
+          <a class="dropdown-item dropdown-toggle" href="#">Maison à vendre</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item text-white" href="/catalogue?categorie=maisons&type=vente&etat=batie">Maisons bâties</a>
+            <a class="dropdown-item text-white" href="/catalogue?categorie=maisons&type=vente&etat=inachevee">Maisons inachevées</a>
+          </div>
+        </div>
+        <!-- Appartement -->
+        <div class="dropdown-submenu">
+          <a class="dropdown-item dropdown-toggle" href="#">Appartement à vendre</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item text-white" href="/catalogue?categorie=appartements&type=vente&etat=meuble">Meublé</a>
+            <a class="dropdown-item text-white" href="/catalogue?categorie=appartements&type=vente&etat=non_meuble">Non meublé</a>
+          </div>
+        </div>
+        <!-- Terrain -->
+        <a class="dropdown-item text-white" href="/catalogue?categorie=parcelles&type=vente">Terrain à vendre</a>
+      </div>
+    </div>
+  
+    <!-- Propriétés à louer -->
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle"><i class="bi bi-door-open me-2"></i>Propriétés à louer</a>
+      <div class="dropdown-menu">
+        <!-- Appartement -->
+        <div class="dropdown-submenu">
+          <a class="dropdown-item dropdown-toggle" href="#">Appartement à louer</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item text-white" href="/catalogue?categorie=appartements&type=location&etat=meuble">Meublé</a>
+            <a class="dropdown-item text-white" href="/catalogue?categorie=appartements&type=location&etat=non_meuble">Non meublé</a>
+          </div>
+        </div>
+        <!-- Maison -->
+        <div class="dropdown-submenu">
+          <a class="dropdown-item dropdown-toggle" href="#">Maison à louer</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item text-white" href="/catalogue?categorie=maisons&type=location&etat=meuble">Meublée</a>
+            <a class="dropdown-item text-white" href="/catalogue?categorie=maisons&type=location&etat=non_meuble">Non meublée</a>
+          </div>
+        </div>
+        <!-- Terrain -->
+        <a class="dropdown-item text-white" href="/catalogue?categorie=parcelles&type=location">Terrain à louer</a>
+      </div>
+    </div>
+  
+    <a href="/gestion-locative"><i class="bi bi-gear me-2"></i>Gestion locative</a>
+    <a href="/actualite"><i class="bi bi-journal me-2"></i>Blog</a>
+    <a href="/nos-partenaire"><i class="bi bi-people me-2"></i>Partenaires</a>
+    <a href="/faq"><i class="bi bi-question-circle me-2"></i>FAQ</a>
+    <a href="/contact"><i class="bi bi-envelope me-2"></i>Contact</a>
+  
+    <hr class="text-white my-3">
+    <a href="#" id="mobileSearch"><i class="bi bi-search me-2"></i>Rechercher</a>
+    
+      @auth
+      <form action="{{ route('logout') }}" method="POST" class="d-inline">
+          @csrf
+          <button type="submit" class="btn btn-sm btn-outline-light">Déconnexion</button>
+      </form>
+      @else
+        <a href="{{ route('login') }}" class="btn btn-sm btn-outline-light">Se connecter</a>
+        <a href="{{ route('register') }}" class="btn btn-sm btn-warning text-dark">S’inscrire</a>
+      @endauth
+  </div>  
+
+  <main id="mainContent">
+    @yield('content')
+  </main>
 
   <footer class="text-white pt-5 pb-3 custom-primary">
     <div class="container">
@@ -306,7 +647,7 @@
         <!-- Colonne 2 : Contact -->
         <div class="col-md-4 mb-4">
           <h5 class="mb-3 border-bottom border-light pb-2">Contact</h5>
-          <p><i class="bi bi-geo-alt-fill me-2 text-light"></i>PORTO NOVO, BÉNIN</p>
+          <p><i class="bi bi-geo-alt-fill me-2 text-light"></i>Porto-Novo, Gbodjè(Bénin) à 200 mettre de le l'église catholique Saint Antoine de Padoue</p>
           <p><i class="bi bi-telephone-fill me-2 text-light"></i>+229 01 96 23 31 21</p>
           <p><i class="bi bi-telephone-fill me-2 text-light"></i>+229 01 56 00 19 30</p>
           <p><i class="bi bi-envelope-fill me-2 text-light"></i>contact@sourouimmobilier.com</p>
@@ -332,18 +673,111 @@
     </div>
   </footer>  
 
+  <!-- === SCRIPTS === -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    document.getElementById("contactToggle").addEventListener("click", function() {
-      document.querySelector(".contact-widget").classList.toggle("active");
+    // Navbar change au scroll
+    window.addEventListener("scroll", function () {
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY > 50) navbar.classList.add("scrolled");
+      else navbar.classList.remove("scrolled");
     });
-  </script>  
-  <script>
-      // Animation AOS
-      AOS.init({
-          duration: 1000,
-          once: true
-      });
-   </script>
 
+    // Sidebar mobile
+    const burger = document.getElementById("burgerMenu");
+    const sidebar = document.getElementById("mobileSidebar");
+    const closeSidebar = document.querySelector(".sidebar-close");
+    burger.addEventListener("click", () => sidebar.classList.add("active"));
+    closeSidebar.addEventListener("click", () => sidebar.classList.remove("active"));
+
+    // Gestion des sous-menus mobiles
+    document.querySelectorAll(".mobile-sidebar .dropdown-toggle").forEach(item => {
+      item.addEventListener("click", e => {
+        e.preventDefault();
+        const parent = item.closest(".dropdown");
+        parent.classList.toggle("open");
+      });
+    });
+
+    // Recherche overlay
+    const searchToggle = document.getElementById("searchToggle");
+    const searchOverlay = document.getElementById("searchOverlay");
+    const closeSearch = document.querySelector(".close-search");
+    const mobileSearch = document.getElementById("mobileSearch");
+    if (searchToggle) searchToggle.addEventListener("click", () => searchOverlay.classList.add("active"));
+    if (mobileSearch) mobileSearch.addEventListener("click", () => {
+      sidebar.classList.remove("active");
+      searchOverlay.classList.add("active");
+    });
+    closeSearch.addEventListener("click", () => searchOverlay.classList.remove("active"));
+    window.addEventListener("keydown", e => { if (e.key === "Escape") searchOverlay.classList.remove("active"); });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const dropdowns = document.querySelectorAll('.nav-item.dropdown > .nav-link');
+    
+      dropdowns.forEach(link => {
+        link.addEventListener('click', () => {
+          dropdowns.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        });
+      });
+    });
+  </script>
+  
+  <!-- ===  Défilement des messages === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const pubMessages = [
+        " Sourou Immobilier Service : trouvez la maison de vos rêves !",
+        " Achetez ou louez votre véhicule en toute sécurité !",
+        " Mobilier de qualité, livraison rapide !",
+        " Sourou : L'immobilier autrement."
+      ];
+    
+      const pubContainer = document.querySelector(".pub-text");
+      let index = 0;
+    
+      function showNextMessage() {
+        pubContainer.innerHTML = "";
+    
+        const span = document.createElement("span");
+        span.textContent = pubMessages[index];
+        pubContainer.appendChild(span);
+    
+        // Calculer la largeur du texte et de son conteneur pour adapter la durée
+        const textWidth = span.offsetWidth;
+        const containerWidth = pubContainer.offsetWidth;
+        const distance = containerWidth + textWidth;
+        const speed = 50; 
+        const duration = distance / speed * 1500;
+    
+        span.animate(
+          [
+            { transform: `translateX(${containerWidth}px)` },
+            { transform: `translateX(${-textWidth}px)` }
+          ],
+          {
+            duration: duration,
+            iterations: 1,
+            easing: "linear"
+          }
+        );
+    
+        setTimeout(() => {
+          index = (index + 1) % pubMessages.length;
+          showNextMessage();
+        }, duration);
+      }
+    
+      showNextMessage();
+    });
+  </script>
+    
+  
+
+  
+  
 </body>
+</html>

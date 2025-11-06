@@ -4,17 +4,19 @@
 
 @section('content')
 <div class="container mt-4">
-    <h2 class="mb-4">Mes Biens</h2>
+    <div class="d-flex justify-content-between" >
+        <h4 class="mb-4">Mes Biens</h4>
 
-    {{-- Toggle view --}}
-    <div class="btn-group mb-3" role="group">
-        <button id="btnList" type="button" class="btn btn-outline-primary active">Liste</button>
-        <button id="btnCards" type="button" class="btn btn-outline-primary">Cards</button>
+        {{-- Toggle view --}}
+        <div class="btn-group mb-3" role="group">
+            <button id="btnList" type="button" class="btn btn-outline-primary active">Liste</button>
+            <button id="btnCards" type="button" class="btn btn-outline-primary">Cards</button>
+        </div>
     </div>
 
     {{-- LISTE --}}
-    <div id="view-list">
-        <table class="table table-hover">
+    <div id="view-list" class="table-responsive">
+        <table class="table table-hover table-sm table-middle">
             <thead>
                 <tr>
                     <th>Id</th>

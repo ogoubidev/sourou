@@ -12,7 +12,7 @@
 
         <div id="erreurs" class="alert alert-danger d-none"></div>
 
-        <form action="{{ route('register') }}" method="post">
+        <form action="{{ route('register') }}" method="post" enctype="multipart/form-data">
           @csrf
           
           <div class="mb-3">
@@ -29,7 +29,7 @@
 
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email professionnel" value="{{ old('email') }}" required>
+            <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email professionnel" value="{{ old('email') }}">
             @error('email')<div class="invalid-feedback">{{ $message }}</div>@enderror
           </div>
 
@@ -56,6 +56,12 @@
             <label class="form-check-label" for="terms">J'accepte les conditions d'utilisation</label>
             @error('terms')<div class="text-danger">{{ $message }}</div>@enderror
           </div>
+
+          <div class="mb-3">
+            <label for="profil" class="form-label">Photo de profil (optionnelle)</label>
+            <input type="file" id="profil" name="profil" class="form-control @error('profil') is-invalid @enderror" accept="image/*">
+            @error('profil')<div class="invalid-feedback">{{ $message }}</div>@enderror
+          </div>          
 
           <button class="btn btn-primary w-100 mb-2" type="submit">S'inscrire</button>
           <button class="btn btn-outline-primary w-100" type="button" onclick="window.location.href='{{ route('login') }}'">Se connecter</button>

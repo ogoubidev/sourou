@@ -312,7 +312,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('signalements', SignalerController::class);
 
         // Acheter un bien
-        Route::get('/biens/acheter', [ClientBienController::class, 'acheter'])->name('biens.acheter');
+        // Route::get('/biens/acheter', [ClientBienController::class, 'acheter'])->name('biens.acheter');
         Route::post('/biens/payer', [ClientBienController::class, 'payer'])->name('biens.payer');
 
         Route::get('/biens/acheter/{bien}', [ClientBienController::class, 'acheter'])->name('biens.acheter');

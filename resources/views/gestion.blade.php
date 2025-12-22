@@ -101,7 +101,7 @@
       <!-- SECTION 1 : Système de gestion -->
       <div class="row align-items-center mb-5 fade-in">
         <div class="col-md-6 mb-4 mb-md-0">
-          <img src="{{ asset('assets/images/femme_imo_gauche.png') }}" alt="Système de gestion" class="img-fluid rounded-4 shadow">
+          <img src="{{ asset('assets/images/IMG-20240821-WA0098.jpg') }}" alt="Système de gestion" class="img-fluid rounded-4 shadow">
         </div>
         <div class="col-md-6">
         <div class="titre-avec-num mb-3">
@@ -122,7 +122,7 @@
       <!-- SECTION 2 : Rôles -->
       <div class="row align-items-center flex-md-row-reverse mb-5 fade-in">
         <div class="col-md-6 mb-4 mb-md-0">
-          <img src="{{ asset('assets/images/femme immo.png') }}" style="" alt="Rôle de la société" class="img-fluid rounded-4 shadow">
+          <img src="{{ asset('assets/images/IMG-20250904-WA0030(1).jpg') }}" style="" alt="Rôle de la société" class="img-fluid rounded-4 shadow">
         </div>
         <div class="col-md-6">
             <div class="titre-avec-num mb-3">
@@ -147,7 +147,7 @@
       <!-- SECTION 3 : Suivi -->
       <div class="row align-items-center mb-5 fade-in">
         <div class="col-md-6 mb-4 mb-md-0">
-          <img src="{{ asset('assets/images/homme (1).png') }}" alt="Suivi des biens" class="img-fluid rounded-4 shadow">
+          <img src="{{ asset('assets/images/FB_IMG_1751631901423.jpg ') }}" alt="Suivi des biens" class="img-fluid rounded-4 shadow">
         </div>
         <div class="col-md-6">
             <div class="titre-avec-num mb-3">

@@ -24,11 +24,11 @@
                 </div>
             </a>
 
-            <a href="https://www.aim-transactions.com/" style="text-decoration: none;">
+            <a href="https://africaimmomarket.com/" style="text-decoration: none;">
                 <div class="logo-card shadow-sm">
-                    <img src="{{ asset('assets/images/aim.png') }}" alt="AIM" class="img-fluid">
+                    <img src="{{ asset('assets/images/logo  aim.png') }}" alt="AIM" class="img-fluid" style="width: 150px; height: 100px;">
                     <h6 class="mt-2 fw-semibold" style="color: #005078;">AIM</h6>
-                    <p class="small text-muted mb-0">Soutien et expertise pour la gestion locative et transactions sécurisées.
+                    <p class="small text-muted mb-0">Soutien dans la la visibilité, la sécurité et la crédibilité des services immobiliers.
                     </p>
                 </div>
             </a>

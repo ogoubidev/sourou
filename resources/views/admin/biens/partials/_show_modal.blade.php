@@ -69,8 +69,8 @@
           <p><strong>Adresse :</strong> {{ $bien->adresse }}</p>
           <p><strong>Type :</strong> {{ ucfirst($bien->type) }}</p>
           <p><strong>Prix :</strong> {{ number_format($bien->prix, 2, ',', ' ') }} FCFA</p>
-          <p><strong>Propriétaire :</strong> {{ $bien->proprietaire->name }} ({{ $bien->proprietaire->telephone ?? '—' }})</p>
-          <p><strong>Date d’ajout :</strong> {{ $bien->created_at->format('d/m/Y H:i') }}</p>
+          <!-- <p><strong>Propriétaire :</strong> {{ $bien->proprietaire->name }} ({{ $bien->proprietaire->telephone ?? '—' }})</p>
+          <p><strong>Date d’ajout :</strong> {{ $bien->created_at->format('d/m/Y H:i') }}</p> -->
         </div>
       </div>
 

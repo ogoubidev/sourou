@@ -318,6 +318,313 @@
                 @endforeach
             </div>
         </div>
+        
     </div>
 </div>
+
+
+<!-- Section Blog -->
+<section class="blog-section py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Article Principal -->
+            <div class="col-lg-8">
+                <article class="blog-post card border-0 shadow-sm">
+                    <!-- En-tête de l'article -->
+                    <div class="card-body p-4">
+                        <!-- Titre -->
+                        <h1 class="blog-title fw-bold mb-3" style="color: #005078;">
+                            🎉 SOUROU IMMOBILIER SERVICE SARL franchit une nouvelle étape !
+                        </h1>
+                        
+                        <!-- Métadonnées -->
+                        <div class="blog-meta d-flex flex-wrap gap-3 mb-4 text-muted">
+                            <span><i class="far fa-calendar me-1"></i> 20 Novembre 2025</span>
+                            <span><i class="far fa-user me-1"></i> Équipe SOUROU IMMOBILIER</span>
+                            <span><i class="far fa-folder me-1"></i> Actualités, Événements</span>
+                        </div>
+                        
+                        <!-- Image Principale -->
+                        <div class="blog-main-image mb-4">
+                            <img src="{{ asset('assets/images/actualite/WhatsApp Image 2025-11-29 at 10.16.31.jpeg') }}" 
+                                 class="img-fluid rounded-3 w-100" 
+                                 alt="Cérémonie d'entrée du nouvel actionnaire"
+                                 style="max-height: 500px; object-fit: cover;">
+                            <p class="text-muted text-center mt-2 small">
+                                <em>Cérémonie officielle d'entrée de Dr ZOUNDJIEKPON Vincent comme nouvel actionnaire</em>
+                            </p>
+                        </div>
+                        
+                        <!-- Contenu de l'article -->
+                        <div class="blog-content">
+                            <!-- Introduction -->
+                            <div class="blog-intro mb-4">
+                                <p class="lead fw-semibold" style="color: #005078;">
+                                    Nous avons eu l'honneur d'organiser le 20 Novembre 2025, la cérémonie officielle d'entrée de notre nouvel actionnaire,
+                                    <strong class="text-dark">Dr ZOUNDJIEKPON Vincent</strong>, un partenaire de vision et d'ambition pour un immobilier moderne, responsable et durable au Bénin et à l'international.
+                                </p>
+                            </div>
+                            
+                            <!-- Section Thème -->
+                            <div class="blog-theme-section mb-4 p-4 bg-light rounded-3">
+                                <h3 class="h4 fw-bold mb-3" style="color: #005078;">
+                                    🎯 Sous le thème :
+                                </h3>
+                                <blockquote class="blockquote fst-italic fs-5 text-center" style="color: #333;">
+                                    <strong>« Ensemble pour un développement immobilier durable au Bénin et à l'international »</strong>
+                                </blockquote>
+                                <p class="text-center mb-0">
+                                    cet événement marque une phase décisive dans l'expansion stratégique de notre société.
+                                </p>
+                            </div>
+                            
+                            <!-- Section Succès -->
+                            <div class="blog-success-section mb-4">
+                                <h3 class="h4 fw-bold mb-3" style="color: #005078;">
+                                    ✨ La cérémonie a été un véritable succès grâce à :
+                                </h3>
+                                
+                                <!-- Galerie des participants -->
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-6">
+                                        <div class="participant-card p-3 border rounded">
+                                            <div class="d-flex align-items-center">
+                                                <div class="participant-icon me-3">
+                                                    <i class="fas fa-handshake fa-2x" style="color: #005078;"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="fw-bold mb-1">Partenaires professionnels</h6>
+                                                    <p class="small text-muted mb-0">Nos collaborateurs stratégiques</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="participant-card p-3 border rounded">
+                                            <div class="d-flex align-items-center">
+                                                <div class="participant-icon me-3">
+                                                    <i class="fas fa-users fa-2x" style="color: #005078;"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="fw-bold mb-1">Clients fidèles</h6>
+                                                    <p class="small text-muted mb-0">La confiance qui nous anime</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="participant-card p-3 border rounded">
+                                            <div class="d-flex align-items-center">
+                                                <div class="participant-icon me-3">
+                                                    <i class="fas fa-landmark fa-2x" style="color: #005078;"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="fw-bold mb-1">Autorités locales</h6>
+                                                    <p class="small text-muted mb-0">Les autorités de l'arrondissement</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="participant-card p-3 border rounded">
+                                            <div class="d-flex align-items-center">
+                                                <div class="participant-icon me-3">
+                                                    <i class="fas fa-heart fa-2x" style="color: #005078;"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="fw-bold mb-1">Famille et proches</h6>
+                                                    <p class="small text-muted mb-0">Nos parents et proches</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Galerie de photos -->
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-4">
+                                        <img src="{{ asset('assets/images/AGECIB.jpeg') }}" 
+                                             class="img-fluid rounded shadow-sm" 
+                                             alt="Partenaires de la cérémonie"
+                                             style="height: 150px; width: 80%;">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <img src="{{ asset('assets/images/logo  aim.png') }}" 
+                                             class="img-fluid rounded shadow-sm" 
+                                             alt="Clients fidèles"
+                                             style="height: 150px; width: 80%;">
+                                    </div>
+                                   
+                                </div>
+                                
+                                <!-- Section Collaborateurs -->
+                                <div class="collaborators-section p-4 bg-light rounded-3">
+                                    <h4 class="h5 fw-bold mb-3" style="color: #005078;">
+                                        <i class="fas fa-star me-2"></i>Et surtout nos collaborateurs engagés
+                                    </h4>
+                                    <p class="mb-0">
+                                        Un merci spécial à notre équipe dévouée dont l'engagement et le professionnalisme 
+                                        ont contribué au succès retentissant de cet événement marquant.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- Signature -->
+                            <div class="blog-signature mt-5 pt-4 border-top">
+                                <div class="d-flex align-items-center">
+                                    <div class="me-3">
+                                        <i class="fas fa-building fa-2x" style="color: #005078;"></i>
+                                    </div>
+                                    <div>
+                                        <p class="fw-bold mb-1" style="color: #005078;">
+                                            SOUROU IMMOBILIER SERVICE SARL
+                                        </p>
+                                        <p class="text-muted small mb-0">
+                                            Votre partenaire immobilier de confiance au Bénin
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Footer de l'article -->
+                    <div class="card-footer bg-light py-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="blog-tags">
+                                <span class="badge bg-primary me-2">Immobilier</span>
+                                <span class="badge bg-secondary me-2">Investissement</span>
+                                <span class="badge bg-success me-2">Développement durable</span>
+                                <span class="badge bg-info">Bénin</span>
+                            </div>
+                            <div class="blog-share">
+                                <button class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-share-alt me-1"></i> Partager
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <aside class="sidebar ps-lg-4">
+                    <!-- À propos -->
+                    <div class="sidebar-widget card border-0 shadow-sm mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold mb-3" style="color: #005078;">
+                                <i class="fas fa-info-circle me-2"></i>À propos
+                            </h5>
+                            <p class="small">
+                                SOUROU IMMOBILIER SERVICE SARL est une référence dans le secteur immobilier béninois, 
+                                offrant des solutions innovantes et durables pour tous vos projets immobiliers.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Articles récents -->
+                    <div class="sidebar-widget card border-0 shadow-sm mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold mb-3" style="color: #005078;">
+                                <i class="fas fa-newspaper me-2"></i>Articles récents
+                            </h5>
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-3 pb-2 border-bottom">
+                                    <a href="#" class="text-decoration-none">
+                                        <h6 class="fw-semibold mb-1">Nouveaux projets immobiliers 2025</h6>
+                                        <p class="small text-muted mb-0">15 Novembre 2025</p>
+                                    </a>
+                                </li>
+                                <li class="mb-3 pb-2 border-bottom">
+                                    <a href="#" class="text-decoration-none">
+                                        <h6 class="fw-semibold mb-1">Investir dans l'immobilier au Bénin</h6>
+                                        <p class="small text-muted mb-0">10 Novembre 2025</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-decoration-none">
+                                        <h6 class="fw-semibold mb-1">Notre engagement pour le développement durable</h6>
+                                        <p class="small text-muted mb-0">5 Novembre 2025</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Galerie -->
+                    <div class="sidebar-widget card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold mb-3" style="color: #005078;">
+                                <i class="fas fa-images me-2"></i>Galerie
+                            </h5>
+                            <div class="row g-2">
+                                <div class="col-4">
+                                    <img src="{{ asset('assets/images/actualite/WhatsApp Image 2025-11-29 at 10.16.33.jpeg') }}" 
+                                         class="img-fluid rounded" 
+                                         alt="Projet immobilier"
+                                         style="height: 80px; width: 100%; object-fit: cover;">
+                                </div>
+                                <div class="col-4">
+                                    <img src="{{ asset('assets/images/actualite/WhatsApp Image 2025-11-29 at 10.16.32.jpeg') }}" 
+                                         class="img-fluid rounded" 
+                                         alt="Équipe"
+                                         style="height: 80px; width: 100%; object-fit: cover;">
+                                </div>
+                                <div class="col-4">
+                                    <img src="{{ asset('assets/images/actualite/photo densemblee.jpeg') }}" 
+                                         class="img-fluid rounded" 
+                                         alt="Client"
+                                         style="height: 80px; width: 100%; object-fit: cover;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Styles additionnels -->
+<style>
+    .blog-section {
+        background-color: #f8f9fa;
+    }
+    
+    .blog-title {
+        font-size: 1.8rem;
+        line-height: 1.3;
+    }
+    
+    .blog-content p {
+        line-height: 1.7;
+        margin-bottom: 1rem;
+    }
+    
+    .participant-card {
+        transition: transform 0.3s ease;
+    }
+    
+    .participant-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .blog-meta i {
+        width: 16px;
+    }
+    
+    .sidebar-widget {
+        transition: transform 0.3s ease;
+    }
+    
+    .sidebar-widget:hover {
+        transform: translateX(5px);
+    }
+</style>
+
+<!-- Ajouter Font Awesome pour les icônes -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 @endsection

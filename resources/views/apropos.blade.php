@@ -118,6 +118,16 @@
                     <p class="text-muted">Bénéficiez de notre expertise pour la réussir vos projets immobilier.</p>
                 </div>
             </div>
+
+             <div class="col-md-3">
+                <div class="service-card text-center p-4 shadow-sm rounded-4">
+                    <div class="icon-wrapper">
+                        <h3> <i class="bi bi-file-earmark-text"></i></h3>
+                    </div>
+                    <h5 class="mt-4">GESTION & LOCATIVE</h5>
+                    <p class="text-muted">Confiez la gestion et location de vos résidences  à notre équipe professionnelle et  bénéficiez d’un suivi transparent, rigoureux.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -211,28 +221,63 @@
     <p class="text-center fw-semibold">Une équipe expérimentée, dévouée et passionnée, dédiée à votre succès immobilier</p>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8 service-card border border-1 rounded rounded-2">
-                <center><img src="{{ asset('assets/images/pdg.jpg') }}" class="text-center rounded rounded-4 img-thumbnail mt-2" style="height: 330px; width: 450px" alt=""></center>
-                <div>
-                    <h5 class="text-center" style="color: #005078"><strong>Président Directeur Générale</strong></h5>
-                    <p class="text-center fw-semibold">Leadership et vision du PDG
-                    </p>
-                    <p class="text-center">En tant que President Directeur Général de SOUROU IMMOBILIER SERVICE SARL, M. Nino Sourou. GBODOGBE porte une vision claire et ambitieuse :
-                    faire de la société une référence incontournable de l’immobilier au Bénin, où chaque béninoise trouve une solution fiable, rapide et adaptée à ses besoins.
-
-                    Sa conviction est simple :
-                    👉 Un client satisfait aujourd’hui est l’ambassadeur de demain.
-                    Grâce à cette vision et à un leadership orienté vers la transparence, la confiance et l’innovation, SOUROU IMMOBILIER SERVICE SARL continue de grandir et de s’imposer comme un acteur majeur de l’immobilier au Bénin.</p>
+        <div class="row align-items-center">
+            <!-- DGA - Image à gauche -->
+            <div class="col-md-3 text-center">
+                <div class="service-card border border-1 rounded rounded-2 p-3 h-100">
+                    <img src="{{ asset('assets/images/membre/IMG-20251125-WA0052.jpg') }}" class="rounded rounded-4 img-thumbnail mb-3" style="height: 270px; width: 280px" alt="Directeur Général Adjoint">
+                    <div>
+                        <h5 class="text-center" style="color: #005078"><strong>Mr ZOUNDJIEKPON Vincent</strong></h5>
+                        <p class="text-center fw-semibold">Directeur Général Adjoint/p>
+                        <p class="text-center small">Il apporte son expertise technique et managériale pour assurer l'excellence opérationnelle au quotidien et soutenir la vision stratégique de l'entreprise.</p>
+                    </div>
+                    <center>
+                        <p class="atouts-item">Gestion Opérationnelle</p>
+                        <p class="atouts-item">Coordination Équipes</p>
+                        <p class="atouts-item">Optimisation Processus</p>
+                    </center>
                 </div>
-                <center>
-                  <p class="atouts-item">Gestion Patrimoine</p>
-                  <p class="atouts-item">Relation Client</p>
-                  <p class="atouts-item">Administration</p>
-                  <p class="atouts-item">Suivi Proactif</p>
-                  <p class="atouts-item">Conseil Expert</p>
-              </center>              
+            </div>
+
+            <!-- PDG - Image centrale (maintenue) -->
+            <div class="col-md-6">
+                <div class="service-card border border-1 rounded rounded-2 p-3 h-100">
+                    <center><img src="{{ asset('assets/images/membre/IMG-20251125-WA0069 (2).jpg') }}" class="rounded rounded-4 img-thumbnail mt-2 mb-3" style="height: 330px; width: 480px" alt="Président Directeur Général"></center>
+                   <div>
+    <center><h5 style="color: #005078"><strong>Mr GBODOGBE SOUROU NINO</strong></h5>
+    <p class="fw-semibold">Président Directeur Général</p></center>
+    <p class="text-start">En tant que President Directeur Général de SOUROU IMMOBILIER SERVICE SARL, Je porte une vision claire et ambitieuse :<br>
+    faire de la société une référence incontournable de l'immobilier au Bénin, où chaque béninoise trouve une solution fiable, rapide et adaptée à ses besoins.
+
+    Sa conviction est simple : 
+    <br><i>Un client satisfait aujourd'hui est l'ambassadeur de demain.</i>
+    Grâce à cette vision et à un leadership orienté vers la transparence, la confiance et l'innovation, SOUROU IMMOBILIER SERVICE SARL continue de grandir et de s'imposer comme un acteur majeur de l'immobilier au Bénin.</p>
+</div>
+                    <center>
+                        <p class="atouts-item">Gestion Patrimoine</p>
+                        <p class="atouts-item">Relation Client</p>
+                        <p class="atouts-item">Administration</p>
+                        <p class="atouts-item">Suivi Proactif</p>
+                        <p class="atouts-item">Conseil Expert</p>
+                    </center>
+                </div>
+            </div>
+
+            <!-- Responsable Affaires Locatives - Image à droite -->
+            <div class="col-md-3 text-center">
+                <div class="service-card border border-1 rounded rounded-2 p-3 h-100">
+                    <img src="{{ asset('assets/images/membre/IMG-20251125-WA0077(1).jpg') }}" class="rounded rounded-4 img-thumbnail mb-3" style="height: 290px; width: 280px" alt="Responsable des Affaires Locatives">
+                    <div>
+                        <h5 class="text-center" style="color: #005078"><strong>Mme GOUNON Bernice</strong></h5>
+                        <p class="text-center fw-semibold">Responsable des Affaires Locatives</p>
+                        <p class="text-center small">Le Responsable des Affaires Locatives assure la gestion optimale du parc locatif, garantissant des relations sereines entre propriétaires et locataires.</p>
+                    </div>
+                    <center>
+                        <p class="atouts-item">Gestion Locative</p>
+                        <p class="atouts-item">Relation Locataires</p>
+                        <p class="atouts-item">Suivi Loyers</p>
+                    </center>
+                </div>
             </div>
         </div>
     </div>
@@ -254,7 +299,7 @@
                 </div>
                 <h5 class="fw-bold">Confiance</h5>
                 <p class="text-dark">
-                  nstaurer une relation durable avec nos clients.
+                  Instaurer une relation durable avec nos clients.
                 </p>
               </div>
             </div>
@@ -284,7 +329,7 @@
                 </div>
                 <h5 class="fw-bold">Excellence</h5>
                 <p class="text-dark">
-                  offrir un service professionnel et de qualité.
+                  Offrir un service professionnel et de qualité.
                 </p>
               </div>
             </div>
@@ -296,7 +341,7 @@
                 </div>
                 <h5 class="fw-bold">Proximité</h5>
                 <p class="text-dark">
-                  écouter et comprendre les besoins de nos clients pour mieux les accompagner.
+                  Ecouter et comprendre les besoins de nos clients pour mieux les accompagner.
                 </p>
               </div>
             </div>
@@ -308,7 +353,7 @@
                 </div>
                 <h5 class="fw-bold">Innovation</h5>
                 <p class="text-dark">
-                  proposer des solutions modernes et adaptées aux défis du marché immobilier.
+                  Proposer des solutions modernes et adaptées aux défis du marché immobilier.
                 </p>
               </div>
             </div>

@@ -115,7 +115,7 @@
           </marquee>
   
           <h5 class="text-muted">
-            <strong>SOUROU IMMOBILIER</strong> SERVICE SARL est une société spécialisée dans 
+            <strong>SOUROU IMMOBILIER SERVICE SARL</strong>  est une société spécialisée dans 
             <mark style="  background-color: #cceeff; padding: 0 2px; border-radius: 3px;" >la gestion locative et la vente de biens immobiliers</mark> 
             au Bénin. Nous accompagnons nos clients avec transparence, sécurité et professionnalisme, pour que chaque projet immobilier soit une réussite.
           </h5>
@@ -155,17 +155,58 @@
                     </div>
                     <center><h5>IMMOBILIER</h5></center>
                     <p>
-                      Nous allons bien au-delà de la simple location ou vente. Avec transparence et sécurité, nous vous accompagnons dans :
-          
-                      Gestion locative transparente : nous assurons la gestion complète de vos biens (suivi des loyers, entretien, relation avec les locataires) pour vous offrir tranquillité et rentabilité.
-          
-                      Location d’appartements et résidences meublées (luxe ou simple) : que ce soit pour un séjour court ou long, nous mettons à disposition des logements adaptés à votre budget et à vos besoins.
-          
-                      Vente et achat de terrains sécurisés : nous vous proposons uniquement des terrains avec des documents fiables, pour des investissements sûrs et durables.
-          
-                      Mise en valeur des biens : valorisation de vos terrains, maisons et appartements grâce à une bonne présentation et une communication efficace pour trouver rapidement preneur.
-          
-                      Estimation loyers et terrains : évaluation juste et professionnelle de la valeur locative ou marchande de vos biens afin de vous aider à prendre de bonnes décisions.
+                    <center> Nous allons bien au-delà de la simple location ou vente. Avec transparence et sécurité, nous vous accompagnons dans :</center>
+                    <br>
+
+                    <ul class="liste-justifiee">
+  <li><strong>Gestion locative transparente</strong> : nous assurons la gestion complète de vos biens (suivi des loyers, entretien, relation avec les locataires) pour vous offrir tranquillité et rentabilité.</li>
+  <li><strong>Location d'appartements et résidences meublées (luxe ou simple)</strong> : que ce soit pour un séjour court ou long, nous mettons à disposition des logements adaptés à votre budget et à vos besoins.</li>
+  <li><strong>Vente et achat de terrains sécurisés</strong> : nous vous proposons uniquement des terrains avec des documents fiables, pour des investissements sûrs et durables.</li>
+  <li><strong>Mise en valeur des biens</strong> : valorisation de vos terrains, maisons et appartements grâce à une bonne présentation et une communication efficace pour trouver rapidement preneur.</li>
+  <li><strong>Estimation loyers et terrains</strong> : évaluation juste et professionnelle de la valeur locative ou marchande de vos biens afin de vous aider à prendre de bonnes décisions.</li>
+</ul>
+
+<style>
+  @media (max-width: 768px) {
+  .liste-justifiee {
+    padding-left: 15px;
+    text-align: left; /* Sur mobile, on passe à gauche */
+  }
+  
+  .liste-justifiee li {
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+  }
+}
+
+.liste-justifiee {
+  text-align: justify; /* Justifie le texte */
+  padding-left: 20px; /* Espace à gauche pour les puces */
+}
+
+.liste-justifiee li {
+  margin-bottom: 15px; /* Espace entre les éléments */
+  line-height: 1.6; /* Améliore la lisibilité */
+  position: relative; /* Position relative pour le tiret personnalisé */
+  padding-left: 15px; /* Espace pour le tiret */
+}
+
+.liste-coloree li::before {
+  content: "➜"; /* Flèche au lieu de tiret */
+  color: #e53e3e; /* Rouge */
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.liste-icone li::before {
+  content: "✓"; /* Checkmark */
+  color: #38a169; /* Vert */
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+
+</style>
                     </p>
                     <span class="arrow">→</span>
                   </a>
@@ -179,13 +220,26 @@
                     </div>
                     <center><h5>BTP & CONSTRUCTION</h5></center>
                     <p>
-                      Votre projet mérite sérieux et expertise. Nous vous offrons :
-          
-                      Suivi de chantier : contrôle rigoureux de l’évolution des travaux, du respect des délais et de la qualité des matériaux utilisés.
-          
-                      Réalisation de projets (résidences, immeubles, villas) : de la conception aux finitions, nous construisons avec professionnalisme vos logements ou bâtiments d’affaires.
-          
-                      Fourniture de matériaux modernes : nous vous aidons à obtenir des matériaux fiables, modernes et adaptés à vos projets de construction.
+                   <ul class="liste-justifiee">
+  <li><strong>Suivi de chantier</strong> : contrôle rigoureux de l'évolution des travaux, du respect des délais et de la qualité des matériaux utilisés.</li>
+  <li><strong>Réalisation de projets (résidences, immeubles, villas)</strong> : de la conception aux finitions, nous construisons avec professionnalisme vos logements ou bâtiments d'affaires.</li>
+  <li><strong>Fourniture de matériaux modernes</strong> : nous vous aidons à obtenir des matériaux fiables, modernes et adaptés à vos projets de construction.</li>
+</ul>
+
+<style>
+.liste-justifiee {
+  text-align: justify; /* Justifie le texte */
+  padding-left: 20px; /* Espace à gauche pour les puces */
+}
+
+.liste-justifiee li {
+  margin-bottom: 15px; /* Espace entre les éléments */
+  line-height: 1.6; /* Améliore la lisibilité */
+  position: relative; /* Position relative pour le tiret personnalisé */
+  padding-left: 15px; /* Espace pour le tiret */
+}
+
+</style>
                     </p>
                     <span class="arrow">→</span>
                   </a>
@@ -199,11 +253,25 @@
                     </div>
                     <center><h5>AUTRES SERVICES D’ACCOMPAGNEMENT</h5></center>
                     <p>
-                      Parce que nous voulons simplifier votre vie au-delà de l’immobilier :
-          
-                      Voyage et achat de billets d’avion : assistance dans l’organisation de vos voyages avec la réservation de billets d’avion au meilleur prix.
-          
-                      Entretien & nettoyage : services professionnels pour maintenir vos résidences, bureaux ou chantiers toujours propres et accueillants.
+                     <ul class="liste-justifiee">
+  <li><strong>Voyage et achat de billets d'avion</strong> : assistance dans l'organisation de vos voyages avec la réservation de billets d'avion au meilleur prix.</li>
+  <li><strong>Entretien & nettoyage</strong> : services professionnels pour maintenir vos résidences, bureaux ou chantiers toujours propres et accueillants.</li>
+</ul>
+
+<style>
+.liste-justifiee {
+  text-align: justify; /* Justifie le texte */
+  padding-left: 20px; /* Espace à gauche pour les puces */
+}
+
+.liste-justifiee li {
+  margin-bottom: 15px; /* Espace entre les éléments */
+  line-height: 1.6; /* Améliore la lisibilité */
+  position: relative; /* Position relative pour le tiret personnalisé */
+  padding-left: 15px; /* Espace pour le tiret */
+}
+
+</style>
                     </p>
                     <span class="arrow">→</span>
                   </a>

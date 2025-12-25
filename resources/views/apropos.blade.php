@@ -244,15 +244,15 @@
                 <div class="service-card border border-1 rounded rounded-2 p-3 h-100">
                     <center><img src="{{ asset('assets/images/membre/IMG-20251125-WA0069 (2).jpg') }}" class="rounded rounded-4 img-thumbnail mt-2 mb-3" style="height: 330px; width: 480px" alt="Président Directeur Général"></center>
                    <div>
-    <center><h5 style="color: #005078"><strong>Mr GBODOGBE SOUROU NINO</strong></h5>
-    <p class="fw-semibold">Président Directeur Général</p></center>
-    <p class="text-start">En tant que President Directeur Général de SOUROU IMMOBILIER SERVICE SARL, Je porte une vision claire et ambitieuse :<br>
-    faire de la société une référence incontournable de l'immobilier au Bénin, où chaque béninoise trouve une solution fiable, rapide et adaptée à ses besoins.
+                    <center><h5 style="color: #005078"><strong>Mr GBODOGBE SOUROU NINO</strong></h5>
+                    <p class="fw-semibold">Président Directeur Général</p></center>
+                    <p class="text-start">En tant que President Directeur Général de SOUROU IMMOBILIER SERVICE SARL, il porte une vision claire et ambitieuse :<br>
+                    faire de la société une référence incontournable de l'immobilier au Bénin, où chaque béninoise trouve une solution fiable, rapide et adaptée à ses besoins.
 
-    Sa conviction est simple : 
-    <br><i>Un client satisfait aujourd'hui est l'ambassadeur de demain.</i>
-    Grâce à cette vision et à un leadership orienté vers la transparence, la confiance et l'innovation, SOUROU IMMOBILIER SERVICE SARL continue de grandir et de s'imposer comme un acteur majeur de l'immobilier au Bénin.</p>
-</div>
+                    Sa conviction est simple : 
+                    <br><i>Un client satisfait aujourd'hui est l'ambassadeur de demain.</i>
+                    Grâce à cette vision et à un leadership orienté vers la transparence, la confiance et l'innovation, SOUROU IMMOBILIER SERVICE SARL continue de grandir et de s'imposer comme un acteur majeur de l'immobilier au Bénin.</p>
+                </div>
                     <center>
                         <p class="atouts-item">Gestion Patrimoine</p>
                         <p class="atouts-item">Relation Client</p>

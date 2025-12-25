@@ -322,12 +322,231 @@
     </div>
 </div>
 
-
 <!-- Section Blog -->
+
 <section class="blog-section py-5">
     <div class="container">
         <div class="row">
-            <!-- Article Principal -->
+            <!-- NOUVELLE NOMINATION - NOUVEL ARTICLE -->
+            <div class="col-lg-8 mb-5">
+                <article class="blog-post card border-0 shadow-sm">
+                    <!-- En-tête de l'article -->
+                    <div class="card-body p-4">
+                        <!-- Titre -->
+                        <h1 class="blog-title fw-bold mb-3" style="color: #005078;">
+                            🏆 Nominée meilleure société immobilière de l'année 2025 !
+                        </h1>
+                        
+                      
+                        <!-- Image Principale -->
+                        <div class="blog-main-image mb-4">
+        <div class="media-container">
+  <div class="video-section">
+    <video controls width="100%">
+      <source src="{{ asset('assets/videos/VID-20251221-WA0013.mp4') }}" type="video/mp4">
+      Votre navigateur ne supporte pas la lecture de vidéos.
+    </video>
+  </div>
+  
+  <div class="image-section">
+    <img src="{{ asset('assets/videos/IMG-20251129-WA0021.jpg') }}" alt="Description de l'image" class="side-image"> <br><br>
+     <video controls width="100%">
+      <source src="{{ asset('assets/videos/VID-20251221-WA0012.mp4') }}" type="video/mp4">
+      Votre navigateur ne supporte pas la lecture de vidéos.
+    </video> <br>
+    <img src="{{ asset('assets/videos/IMG-20251213-WA0010.jpg') }}" alt="Description de l'image" class="side-image">
+
+  </div>
+</div>
+
+<style>
+.media-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start; /* Aligne en haut */
+  margin: 20px 0;
+}
+
+.video-section {
+  flex: 2; /* La vidéo prend plus de place */
+  min-width: 0; /* Important pour le responsive */
+}
+
+.image-section {
+  flex: 1; /* L'image prend moins de place */
+}
+
+.side-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .media-container {
+    flex-direction: column;
+  }
+}
+</style>
+
+                            <p class="text-muted text-center mt-2 small">
+                                <em>Nominée au prestigieux Gala de l'Immobilier Africain 2025</em>
+                            </p>
+                        </div>
+                        
+                        <!-- Contenu de l'article -->
+                        <div class="blog-content">
+                            <!-- Introduction -->
+                            <div class="blog-intro mb-4">
+                                <p class="lead fw-semibold" style="color: #005078;">
+                                    Nous sommes honorés et fiers d'annoncer que <strong>SOUROU IMMOBILIER SERVICE SARL</strong> 
+                                    a été nominée <strong>"Meilleure société immobilière de l'année 2025"</strong> 
+                                    au prestigieux <strong>Gala de l'Immobilier Africain</strong> !
+                                </p>
+                            </div>
+                            
+                            <!-- Section Détails -->
+                            <div class="blog-details-section mb-4">
+                                <h3 class="h4 fw-bold mb-3" style="color: #005078;">
+                                    📍 Une reconnaissance d'excellence
+                                </h3>
+                                
+                                <div class="row mb-4">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="achievement-card p-4 border rounded-3 h-100">
+                                            <div class="d-flex align-items-start">
+                                                <div class="achievement-icon me-3">
+                                                    <i class="fas fa-award fa-2x" style="color: #005078;"></i>
+                                                </div>
+                                                <div>
+                                                    <h5 class="fw-bold mb-2">Nomination prestigieuse</h5>
+                                                    <p class="mb-0">Reconnaissance parmi les meilleures sociétés immobilières d'Afrique</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="achievement-card p-4 border rounded-3 h-100">
+                                            <div class="d-flex align-items-start">
+                                                <div class="achievement-icon me-3">
+                                                    <i class="fas fa-globe-africa fa-2x" style="color: #005078;"></i>
+                                                </div>
+                                                <div>
+                                                    <h5 class="fw-bold mb-2">Portée continentale</h5>
+                                                    <p class="mb-0">Compétition au niveau panafricain avec les plus grands acteurs du secteur</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Description du gala -->
+                                <div class="gala-description p-4 bg-light rounded-3 mb-4">
+                                    <h4 class="h5 fw-bold mb-3" style="color: #005078;">
+                                        <i class="fas fa-star me-2"></i>À propos du Gala de l'Immobilier Africain
+                                    </h4>
+                                    <p class="mb-3">
+                                        Le Gala de l'Immobilier Africain est l'événement annuel le plus prestigieux du secteur 
+                                        immobilier en Afrique. Il récompense l'excellence, l'innovation et le leadership 
+                                        des entreprises qui contribuent au développement du marché immobilier africain.
+                                    </p>
+                                    <ul class="mb-0">
+                                        <li><strong>Périmètre :</strong> Toute l'Afrique</li>
+                                        <li><strong>Catégories :</strong> 15 catégories de récompenses</li>
+                                        <li><strong>Jury :</strong> Experts internationaux de l'immobilier</li>
+                                     
+                                    </ul>
+                                </div>
+                                
+                                <!-- Section Réflexion -->
+                                <div class="reflection-section mb-4">
+                                    <h3 class="h4 fw-bold mb-3" style="color: #005078;">
+                                        🤝 Ce que cette nomination signifie pour nous
+                                    </h3>
+                                    <p>
+                                        Cette nomination est bien plus qu'une simple reconnaissance. Elle représente :
+                                    </p>
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <div class="meaning-card p-3 border rounded h-100">
+                                                <h6 class="fw-bold mb-2">🎯 La validation de notre vision</h6>
+                                                <p class="small mb-0">Notre approche innovante et durable est reconnue au niveau continental</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="meaning-card p-3 border rounded h-100">
+                                                <h6 class="fw-bold mb-2">💪 L'engagement de notre équipe</h6>
+                                                <p class="small mb-0">Le travail acharné et le dévouement de chaque collaborateur portent leurs fruits</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="meaning-card p-3 border rounded h-100">
+                                                <h6 class="fw-bold mb-2">🤝 La confiance de nos clients</h6>
+                                                <p class="small mb-0">Votre fidélité et satisfaction nous ont permis d'atteindre ce niveau</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="meaning-card p-3 border rounded h-100">
+                                                <h6 class="fw-bold mb-2">🌍 Le rayonnement du Bénin</h6>
+                                                <p class="small mb-0">Nous portons fièrement les couleurs du Bénin sur la scène immobilière africaine</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Remerciements -->
+                                <div class="thanks-section p-4 rounded-3" style="background-color: #005078; color: white;">
+                                    <h4 class="h5 fw-bold mb-3">
+                                        <i class="fas fa-hands-clapping me-2"></i>Nos remerciements
+                                    </h4>
+                                    <p class="mb-0">
+                                        Nous tenons à remercier chaleureusement nos clients, partenaires, et toute notre équipe 
+                                        pour leur soutien continu. Cette nomination est la vôtre autant que la nôtre !
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- Signature -->
+                            <div class="blog-signature mt-5 pt-4 border-top">
+                                <div class="d-flex align-items-center">
+                                    <div class="me-3">
+                                        <i class="fas fa-trophy fa-2x" style="color: #005078;"></i>
+                                    </div>
+                                    <div>
+                                        <p class="fw-bold mb-1" style="color: #005078;">
+                                            SOUROU IMMOBILIER SERVICE SARL
+                                        </p>
+                                        <p class="text-muted small mb-0">
+                                            Nominée "Meilleure société immobilière de l'année 2025"
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Footer de l'article -->
+                    <div class="card-footer bg-light py-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="blog-tags">
+                                <span class="badge bg-warning me-2">🏆 Récompense</span>
+                                <span class="badge bg-primary me-2">Immobilier</span>
+                                <span class="badge bg-info me-2">Afrique</span>
+                                <span class="badge bg-success">Excellence</span>
+                            </div>
+                            <div class="blog-share">
+                                <button class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-share-alt me-1"></i> Partager la bonne nouvelle
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+            <!-- ANCIEN ARTICLE - Entrée du nouvel actionnaire -->
             <div class="col-lg-8">
                 <article class="blog-post card border-0 shadow-sm">
                     <!-- En-tête de l'article -->
@@ -520,6 +739,14 @@
                                 SOUROU IMMOBILIER SERVICE SARL est une référence dans le secteur immobilier béninois, 
                                 offrant des solutions innovantes et durables pour tous vos projets immobiliers.
                             </p>
+                            <div class="mt-3 p-3 rounded" style="background-color: #fff8e1;">
+                                <h6 class="fw-bold mb-2" style="color: #005078;">
+                                    <i class="fas fa-trophy me-1"></i>Nouvelle distinction
+                                </h6>
+                                <p class="small mb-0">
+                                    Nominée "Meilleure société immobilière de l'année 2025" au Gala de l'Immobilier Africain
+                                </p>
+                            </div>
                         </div>
                     </div>
                     
@@ -532,14 +759,20 @@
                             <ul class="list-unstyled mb-0">
                                 <li class="mb-3 pb-2 border-bottom">
                                     <a href="#" class="text-decoration-none">
-                                        <h6 class="fw-semibold mb-1">Nouveaux projets immobiliers 2025</h6>
-                                        <p class="small text-muted mb-0">15 Novembre 2025</p>
+                                        <h6 class="fw-semibold mb-1">🏆 Nominée meilleure société immobilière 2025</h6>
+                                        <p class="small text-muted mb-0">Décembre 2025</p>
                                     </a>
                                 </li>
                                 <li class="mb-3 pb-2 border-bottom">
                                     <a href="#" class="text-decoration-none">
-                                        <h6 class="fw-semibold mb-1">Investir dans l'immobilier au Bénin</h6>
-                                        <p class="small text-muted mb-0">10 Novembre 2025</p>
+                                        <h6 class="fw-semibold mb-1">Nouvelle entrée d'actionnaire</h6>
+                                        <p class="small text-muted mb-0">20 Novembre 2025</p>
+                                    </a>
+                                </li>
+                                <li class="mb-3 pb-2 border-bottom">
+                                    <a href="#" class="text-decoration-none">
+                                        <h6 class="fw-semibold mb-1">Nouveaux projets immobiliers 2025</h6>
+                                        <p class="small text-muted mb-0">15 Novembre 2025</p>
                                     </a>
                                 </li>
                                 <li>
@@ -602,11 +835,11 @@
         margin-bottom: 1rem;
     }
     
-    .participant-card {
+    .participant-card, .achievement-card, .meaning-card {
         transition: transform 0.3s ease;
     }
     
-    .participant-card:hover {
+    .participant-card:hover, .achievement-card:hover, .meaning-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
@@ -622,9 +855,21 @@
     .sidebar-widget:hover {
         transform: translateX(5px);
     }
+    
+    /* Styles spécifiques pour la nomination */
+    .achievement-card {
+        border-left: 4px solid #005078 !important;
+    }
+    
+    .meaning-card {
+        background-color: #f8f9fa;
+    }
+    
+    .gala-description {
+        border: 1px solid #e9ecef;
+    }
 </style>
 
 <!-- Ajouter Font Awesome pour les icônes -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
 @endsection
